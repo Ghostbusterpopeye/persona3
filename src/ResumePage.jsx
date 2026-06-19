@@ -507,7 +507,7 @@ export default function ResumePage({ src }) {
             </div>
 
             <div className="resume-detail-list">
-              {EDUCATION_ROWS.map((row) => (
+              {SKILLS_ROWS.map((row) => (
                 <div 
                   className={`resume-detail-row ${selectedRow?.index === row.index ? "selected" : ""}`} 
                   key={row.index}
@@ -547,7 +547,7 @@ export default function ResumePage({ src }) {
             </div>
 
             <div className="resume-detail-list">
-              {EDUCATION_ROWS.map((row) => (
+              {PROJECTS_ROWS.map((row) => (
                 <div 
                   className={`resume-detail-row ${selectedRow?.index === row.index ? "selected" : ""}`} 
                   key={row.index}
@@ -587,7 +587,7 @@ export default function ResumePage({ src }) {
             </div>
 
             <div className="resume-detail-list">
-              {EDUCATION_ROWS.map((row) => (
+              {EXPERIENCE_ROWS.map((row) => (
                 <div 
                   className={`resume-detail-row ${selectedRow?.index === row.index ? "selected" : ""}`} 
                   key={row.index}

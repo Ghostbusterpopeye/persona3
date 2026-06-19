@@ -11,11 +11,35 @@ const ITEMS = [
 const EDUCATION_ROWS = [
   { index: "01", title: "General Education", status: "Complete" },
   { index: "02", title: "Software Engineering", status: "In Progress" },
-  { index: "03", title: "Web Development", status: "In Progress" },
-  { index: "04", title: "Data Structures & Algorithms", status: "In Progress" },
-  { index: "05", title: "Database Systems", status: "In Progress" },
-  { index: "06", title: "Computer Networks", status: "In Progress" },
-  { index: "07", title: "Operating Systems", status: "In Progress" },
+  {index : "03", title: "UI/UX Design", status: "Complete" },
+  { index: "04", title: "Web Development", status: "In Progress" },
+  { index: "05", title: "Data Structures & Algorithms", status: "In Progress" },
+  { index: "06", title: "Database Systems", status: "In Progress" },
+  { index: "07", title: "Computer Networks", status: "In Progress" },
+  { index: "08", title: "Operating Systems", status: "In Progress" },
+  {index : "09", title: "3D Animation & Modeling", status: "Complete" },
+  { index: "10", title: "Software Testing & QA", status: "In Progress" },
+];
+
+const SKILLS_ROWS = [
+  { index: "01", title: "3D Modeling & Production", status: "EXPERT" },
+  { index: "02", title: "3D Material & Texturing", status: "EXPERT" },
+  { index: "03", title: "3D Rigging & Animation", status: "EXPERT" },
+  { index: "04", title: "UI/UX Design", status: "ADVANCED" },
+  { index: "05", title: "Programming (Web Development)", status: "ADVANCED" },
+  { index: "06", title: "Motion Graphic & Animation", status: "EXPERT" },
+  { index: "07", title: "Graphic Design & Brand Designer", status: "EXPERT" }
+];
+
+const PROJECTS_ROWS = [
+  { index: "01", title: " UPA TIK Polije Visit System", status: "PHP/MySQL" },
+  { index: "02", title: "Tefa Canning Polije Profile Portal", status: "JS/CSS" }
+];
+
+const EXPERIENCE_ROWS = [
+  { index: "01", title: "3D Generalist Intern at Gamelab Indonesia", status: "24 - 25" },
+  { index: "02", title: "Graphic Designer at PT. Nias Tujuh Jaya", status: "25 - 26" },
+  { index: "03", title: "Production Staff at ORI Studio", status: "22 - 25" }
 ];
 
 export default function ResumePage({ src }) {
@@ -443,7 +467,7 @@ export default function ResumePage({ src }) {
             <div className="resume-detail-top">
               <div className="resume-detail-top-index">01</div>
               <div className="resume-detail-top-title">EDUCATION LOG</div>
-              <div className="resume-detail-top-progress">7/5</div>
+              <div className="resume-detail-top-progress">ACTIVE</div>
             </div>
 
             <div className="resume-detail-list">
@@ -457,11 +481,10 @@ export default function ResumePage({ src }) {
             </div>
 
             <div className="resume-detail-bottom">
-              <div className="resume-detail-bottom-title">DETAILS</div>
+              <div className="resume-detail-bottom-title">Certifications & Competencies</div>
               <div className="resume-detail-bullets">
-                <div className="resume-detail-bullet">- Maintain progress across required classes and supporting work.</div>
-                <div className="resume-detail-bullet">- Track portfolio-ready projects tied to coursework and labs.</div>
-                <div className="resume-detail-bullet">- Keep materials prepared for internships, research, and review.</div>
+                <div className="resume-detail-bullet">- 3D Production Specialist Certification | Gamelab Indonesia [cite: 47, 48]</div>
+                <div className="resume-detail-bullet">- National Graphic & Multimedia Designer Competency Certificate | BNSP</div>
               </div>
             </div>
           </div>

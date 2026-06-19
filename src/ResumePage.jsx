@@ -424,7 +424,7 @@ export default function ResumePage({ src }) {
 
       `}</style>
 
-<div className="resume-overlay">
+      <div className="resume-overlay">
         <div className="resume-stack">
           <div className={`resume-list-tag${mounted ? " mounted" : ""}`}>LIST</div>
           {ITEMS.map((item, index) => (
@@ -434,11 +434,9 @@ export default function ResumePage({ src }) {
               style={{ transitionDelay: `${index * 55}ms` }}
               onMouseEnter={() => {
                 setActive(index);
-                setSelectedRow(null);
               }}
               onClick={() => {
                 setActive(index);
-                setSelectedRow(null);
               }}
             >
               <div className="resume-card">
@@ -466,6 +464,126 @@ export default function ResumePage({ src }) {
               <div className="resume-detail-top-index">01</div>
               <div className="resume-detail-top-title">EDUCATION LOG</div>
               <div className="resume-detail-top-progress">7/5</div>
+            </div>
+
+            <div className="resume-detail-list">
+              {EDUCATION_ROWS.map((row) => (
+                <div 
+                  className={`resume-detail-row ${selectedRow?.index === row.index ? "selected" : ""}`} 
+                  key={row.index}
+                  onClick={() => setSelectedRow(row)}
+                >
+                  <div className="resume-detail-row-index">{row.index}</div>
+                  <div className="resume-detail-row-title">{row.title}</div>
+                  <div className="resume-detail-status">{row.status}</div>
+                </div>
+              ))}
+            </div>
+
+            {selectedRow && (
+              <div className="resume-selected-viewer">
+                <div className="resume-selected-title">LOG: {selectedRow.title}</div>
+                <div className="resume-selected-desc">STATUS // {selectedRow.status}</div>
+              </div>
+            )}
+
+            <div className="resume-detail-bottom">
+              <div className="resume-detail-bottom-title">DETAILS</div>
+              <div className="resume-detail-bullets">
+                <div className="resume-detail-bullet">- Maintain progress across required classes and supporting work.</div>
+                <div className="resume-detail-bullet">- Track portfolio-ready projects tied to coursework and labs.</div>
+                <div className="resume-detail-bullet">- Keep materials prepared for internships, research, and review.</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {active === 1 && (
+          <div className="resume-detail-panel">
+            <div className="resume-detail-top">
+              <div className="resume-detail-top-index">02</div>
+              <div className="resume-detail-top-title">SKILLS LOG</div>
+              <div className="resume-detail-top-progress">MAX</div>
+            </div>
+
+            <div className="resume-detail-list">
+              {EDUCATION_ROWS.map((row) => (
+                <div 
+                  className={`resume-detail-row ${selectedRow?.index === row.index ? "selected" : ""}`} 
+                  key={row.index}
+                  onClick={() => setSelectedRow(row)}
+                >
+                  <div className="resume-detail-row-index">{row.index}</div>
+                  <div className="resume-detail-row-title">{row.title}</div>
+                  <div className="resume-detail-status">{row.status}</div>
+                </div>
+              ))}
+            </div>
+
+            {selectedRow && (
+              <div className="resume-selected-viewer">
+                <div className="resume-selected-title">LOG: {selectedRow.title}</div>
+                <div className="resume-selected-desc">STATUS // {selectedRow.status}</div>
+              </div>
+            )}
+
+            <div className="resume-detail-bottom">
+              <div className="resume-detail-bottom-title">DETAILS</div>
+              <div className="resume-detail-bullets">
+                <div className="resume-detail-bullet">- Maintain progress across required classes and supporting work.</div>
+                <div className="resume-detail-bullet">- Track portfolio-ready projects tied to coursework and labs.</div>
+                <div className="resume-detail-bullet">- Keep materials prepared for internships, research, and review.</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {active === 2 && (
+          <div className="resume-detail-panel">
+            <div className="resume-detail-top">
+              <div className="resume-detail-top-index">03</div>
+              <div className="resume-detail-top-title">PROJECTS LOG</div>
+              <div className="resume-detail-top-progress">MAX</div>
+            </div>
+
+            <div className="resume-detail-list">
+              {EDUCATION_ROWS.map((row) => (
+                <div 
+                  className={`resume-detail-row ${selectedRow?.index === row.index ? "selected" : ""}`} 
+                  key={row.index}
+                  onClick={() => setSelectedRow(row)}
+                >
+                  <div className="resume-detail-row-index">{row.index}</div>
+                  <div className="resume-detail-row-title">{row.title}</div>
+                  <div className="resume-detail-status">{row.status}</div>
+                </div>
+              ))}
+            </div>
+
+            {selectedRow && (
+              <div className="resume-selected-viewer">
+                <div className="resume-selected-title">LOG: {selectedRow.title}</div>
+                <div className="resume-selected-desc">STATUS // {selectedRow.status}</div>
+              </div>
+            )}
+
+            <div className="resume-detail-bottom">
+              <div className="resume-detail-bottom-title">DETAILS</div>
+              <div className="resume-detail-bullets">
+                <div className="resume-detail-bullet">- Maintain progress across required classes and supporting work.</div>
+                <div className="resume-detail-bullet">- Track portfolio-ready projects tied to coursework and labs.</div>
+                <div className="resume-detail-bullet">- Keep materials prepared for internships, research, and review.</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {active === 3 && (
+          <div className="resume-detail-panel">
+            <div className="resume-detail-top">
+              <div className="resume-detail-top-index">04</div>
+              <div className="resume-detail-top-title">EXPERIENCE LOG</div>
+              <div className="resume-detail-top-progress">MAX</div>
             </div>
 
             <div className="resume-detail-list">

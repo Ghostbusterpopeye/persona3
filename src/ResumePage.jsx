@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ITEMS = [
-  { id: "i", badge: "I", title: "EDUCATION", subtitle: "University / Coursework", rank: 3 },
-  { id: "ii", badge: "II", title: "SKILLS", subtitle: "Frontend / Design / UI", rank: 3 },
+  { id: "i", badge: "I", title: "EDUCATION", subtitle: "University / Coursework", rank: 2 },
+  { id: "ii", badge: "II", title: "SKILLS", subtitle: "Frontend / Design / UI", rank: 1 },
   { id: "iii", badge: "III", title: "PROJECTS", subtitle: "Featured Work", rank: 2 },
   { id: "iv", badge: "IV", title: "EXPERIENCE", subtitle: "Internships / Roles", rank: 2 },
 ];
@@ -11,24 +11,18 @@ const ITEMS = [
 const EDUCATION_ROWS = [
   { index: "01", title: "General Education", status: "Complete" },
   { index: "02", title: "Software Engineering", status: "In Progress" },
-  {index : "03", title: "UI/UX Design", status: "Complete" },
-  { index: "04", title: "Web Development", status: "In Progress" },
-  { index: "05", title: "Data Structures & Algorithms", status: "In Progress" },
-  { index: "06", title: "Database Systems", status: "In Progress" },
-  { index: "07", title: "Computer Networks", status: "In Progress" },
-  { index: "08", title: "Operating Systems", status: "In Progress" },
-  {index : "09", title: "3D Animation & Modeling", status: "Complete" },
-  { index: "10", title: "Software Testing & QA", status: "In Progress" },
+  { index: "03", title: "Web Development", status: "In Progress" },
+  { index: "04", title: "Data Structures & Algorithms", status: "In Progress" },
+  { index: "05", title: "Database Systems", status: "In Progress" },
+  { index: "06", title: "Computer Networks", status: "In Progress" },
 ];
 
 const SKILLS_ROWS = [
-  { index: "01", title: "3D Modeling & Production", status: "EXPERT" },
-  { index: "02", title: "3D Material & Texturing", status: "EXPERT" },
-  { index: "03", title: "3D Rigging & Animation", status: "EXPERT" },
-  { index: "04", title: "UI/UX Design", status: "ADVANCED" },
-  { index: "05", title: "Programming (Web Development)", status: "ADVANCED" },
-  { index: "06", title: "Motion Graphic & Animation", status: "EXPERT" },
-  { index: "07", title: "Graphic Design & Brand Designer", status: "EXPERT" }
+  { index: "01", title: "3D Modeling & Animation", status: "EXPERT" },
+  { index: "02", title: "UI/UX Design", status: "ADVANCED" },
+  { index: "03", title: "Programming (Web Development)", status: "ADVANCED" },
+  { index: "04", title: "Motion Graphic & Animation", status: "EXPERT" },
+  { index: "05", title: "Graphic Design & Brand Designer", status: "EXPERT" }
 ];
 
 const PROJECTS_ROWS = [
@@ -443,6 +437,21 @@ export default function ResumePage({ src }) {
                 setActive(index);
               }}
             >
+<div className="resume-overlay">
+        <div className="resume-stack">
+          <div className={`resume-list-tag${mounted ? " mounted" : ""}`}>LIST</div>
+          {ITEMS.map((item, index) => (
+            <div
+              key={item.id}
+              className={`resume-card-wrap${active === index ? " active" : ""}${mounted ? " mounted" : ""}`}
+              style={{ transitionDelay: `${index * 55}ms` }}
+              onMouseEnter={() => {
+                setActive(index);
+              }}
+              onClick={() => {
+                setActive(index);
+              }}
+            >
               <div className="resume-card">
                 <div className="resume-badge">
                   <div className="resume-badge-text">{item.badge}</div>
@@ -467,12 +476,16 @@ export default function ResumePage({ src }) {
             <div className="resume-detail-top">
               <div className="resume-detail-top-index">01</div>
               <div className="resume-detail-top-title">EDUCATION LOG</div>
-              <div className="resume-detail-top-progress">ACTIVE</div>
+              <div className="resume-detail-top-progress">7/5</div>
             </div>
 
             <div className="resume-detail-list">
               {EDUCATION_ROWS.map((row) => (
-                <div className="resume-detail-row" key={row.index}>
+                <div 
+                  className={`resume-detail-row ${selectedRow?.index === row.index ? "selected" : ""}`} 
+                  key={row.index}
+                  onClick={() => setSelectedRow(row)}
+                >
                   <div className="resume-detail-row-index">{row.index}</div>
                   <div className="resume-detail-row-title">{row.title}</div>
                   <div className="resume-detail-status">{row.status}</div>
@@ -480,11 +493,20 @@ export default function ResumePage({ src }) {
               ))}
             </div>
 
+            {/* Viewer dinamis saat row diklik */}
+            {selectedRow && (
+              <div className="resume-selected-viewer">
+                <div className="resume-selected-title">LOG: {selectedRow.title}</div>
+                <div className="resume-selected-desc">STATUS // {selectedRow.status}</div>
+              </div>
+            )}
+
             <div className="resume-detail-bottom">
-              <div className="resume-detail-bottom-title">Certifications & Competencies</div>
+              <div className="resume-detail-bottom-title">DETAILS</div>
               <div className="resume-detail-bullets">
-                <div className="resume-detail-bullet">- 3D Production Specialist Certification | Gamelab Indonesia [cite: 47, 48]</div>
-                <div className="resume-detail-bullet">- National Graphic & Multimedia Designer Competency Certificate | BNSP</div>
+                <div className="resume-detail-bullet">- Maintain progress across required classes and supporting work.</div>
+                <div className="resume-detail-bullet">- Track portfolio-ready projects tied to coursework and labs.</div>
+                <div className="resume-detail-bullet">- Keep materials prepared for internships, research, and review.</div>
               </div>
             </div>
           </div>

@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 import char1 from "./assets/char1.png";
 import char2 from "./assets/char2.png";
 import char3 from "./assets/char3.png";
+import bgVideo from "./assets/main3.mp4";
 import newsign from "./assets/newsign.png";
 import icon1 from "./assets/icon1.png";
 import icon2 from "./assets/icon2.png";
 import icon3 from "./assets/icon3.png";
 
-const bgVideo = "/main3.mp4";
 
 const CHARS = [char1, char2, char3];
 
@@ -20,30 +20,27 @@ const ROLES = [
 
 const ITEMS = [
   {
-    id: "github", label: "GITHUB", handle: "@Ghostbusterpopeye", href: "https://github.com/Ghostbusterpopeye", icon: "🐙", barIcon: icon1, bars: 1, newBars: [0], counts: ["VIEW"],
-    links: ["github.com/Ghostbusterpopeye"],
+    id: "twitch", label: "TWITCH", handle: "@yourname", href: "https://twitch.tv/yourname", icon: "🎮", barIcon: icon1, bars: 1, newBars: [0], counts: ["56"],
+    links: ["twitch.tv/videos/2041837265"],
     stats: [
-      { tag: "DEV", value: "CODE", color: "#6e40c9" },
-      { tag: "SRC", value: "PUB",  color: "#8b5cf6" },
+      { tag: "FOL", value: "1.2K", color: "#9147ff" },
+      { tag: "VWR", value: "042",  color: "#bf94ff" },
     ],
   },
   {
-    id: "instagram", label: "INSTAGRAM", handle: "@alayubi_sultan", href: "https://www.instagram.com/alayubi_sultan/", icon: "📷", barIcon: icon2, bars: 2, newBars: [0], counts: ["FOLLOW", "VIEW"],
-    links: ["instagram.com/alayubi_sultan", "instagram.com/alayubi_sultan"],
+    id: "instagram", label: "INSTAGRAM", handle: "@yourhandle", href: "https://instagram.com/yourhandle", icon: "📷", barIcon: icon2, bars: 5, newBars: [1, 2], counts: ["3.4M", "2.5M", "676K", "412K", "198K"],
+    links: ["instagram.com/p/C4xQmRrNk2a", "instagram.com/p/C3wLpBsOj7f", "instagram.com/reel/C2vKoArMi6e", "instagram.com/p/C1uJnZqLh5d", "instagram.com/reel/C0tImYpKg4c"],
     stats: [
-      { tag: "FOL", value: "OPEN", color: "#e1306c" },
-      { tag: "PST", value: "IGS",  color: "#f77737" },
+      { tag: "FOL", value: "3.4K", color: "#e1306c" },
+      { tag: "PST", value: "128",  color: "#f77737" },
     ],
   },
   {
-    id: "linkedin", label: "LINKEDIN", handle: "@sultan-alayubi", href: "https://www.linkedin.com/in/sultan-alayubi-524760284/", icon: "💼", barIcon: icon3, bars: 2, newBars: [0], counts: ["CONNECT", "VIEW"],
-    links: [
-      "linkedin.com/in/sultan-alayubi-524760284",
-      "linkedin.com/in/sultan-alayubi-524760284",
-    ],
+    id: "tiktok", label: "TIKTOK", handle: "@yourhandle", href: "https://tiktok.com/@yourhandle", icon: "🎵", barIcon: icon3, bars: 7, newBars: [0, 3, 5, 6], counts: ["5.1M", "3.7M", "2.2M", "1.4M", "831K", "490K", "217K"],
+    links: ["tiktok.com/@yourhandle/video/7318492016374859054", "tiktok.com/@yourhandle/video/7305837261940183342", "tiktok.com/@yourhandle/video/7291046385720348974", "tiktok.com/@yourhandle/video/7278392047163820334", "tiktok.com/@yourhandle/video/7264819203847165742", "tiktok.com/@yourhandle/video/7251047382916430126", "tiktok.com/@yourhandle/video/7237294018463851822"],
     stats: [
-      { tag: "NET", value: "PRO",  color: "#0a66c2" },
-      { tag: "JOB", value: "OPEN", color: "#00f2ea" },
+      { tag: "FOL", value: "8.9K", color: "#00f2ea" },
+      { tag: "LKS", value: "52K",  color: "#ff0050" },
     ],
   },
 ];
@@ -54,6 +51,9 @@ export default function Socials() {
   const [activeInfoBar, setActiveInfoBar] = useState(0);
   const [focus, setFocus]                 = useState("left"); // "left" | "right"
   const navigate = useNavigate();
+
+  const isMobileViewport =
+    typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 60);
@@ -398,21 +398,38 @@ export default function Socials() {
         .sc-right-nav .sc-nav-arrow.left  { animation: sc-arrow-left  0.8s ease-in-out infinite; }
         .sc-right-nav .sc-nav-arrow.right { animation: sc-arrow-right 0.8s ease-in-out infinite; }
 
-        /* info bar under nav */
+        /* info panel */
+        .sc-info-panel {
+          position: fixed;
+          top: 132px;
+          right: 0;
+          left: 65%;
+          bottom: 84px;
+          z-index: 50;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          padding: 8px 8px 8px 0;
+          overflow-y: auto;
+          overflow-x: hidden;
+          pointer-events: none;
+        }
+
         @keyframes sc-infobar-in {
           0%   { opacity: 0; transform: translateX(40px); }
           60%  { opacity: 1; transform: translateX(-4px); }
           100% { opacity: 1; transform: translateX(0); }
         }
         .sc-info-bar-wrap {
-          position: fixed;
-          right: 0;
-          left: 65%;
+          position: relative;
+          right: auto;
+          left: auto;
+          width: 100%;
           height: 46px;
           background: transparent;
           pointer-events: all;
           cursor: pointer;
-          z-index: 50;
+          z-index: 1;
           padding: 0;
           animation: sc-infobar-in 0.35s cubic-bezier(0.22,1,0.36,1) both;
         }
@@ -518,6 +535,70 @@ export default function Socials() {
           border-radius: 3px;
           padding: 1px 6px; font-size: 11px;
         }
+
+        .sc-mobile-controls {
+          display: none;
+        }
+
+        .sc-mobile-btn {
+          border: 1px solid rgba(255, 255, 255, 0.28);
+          background: rgba(0, 0, 0, 0.62);
+          color: #fff;
+          font-family: 'Bebas Neue', sans-serif;
+          letter-spacing: 1.2px;
+          font-size: 13px;
+          padding: 7px 12px;
+          border-radius: 8px;
+          min-width: 84px;
+        }
+
+        @media (max-width: 768px) {
+          .sc-root {
+            justify-content: flex-start;
+            padding-top: 12px;
+            gap: 3px;
+          }
+
+          .sc-info-panel {
+            top: min(47vh, 320px);
+            left: 8px;
+            right: 8px;
+            bottom: 58px;
+            gap: 4px;
+            padding: 4px 0;
+          }
+
+          .sc-info-bar-wrap {
+            height: 38px !important;
+          }
+
+          .sc-info-bar-text {
+            font-size: 15px;
+            letter-spacing: 1px;
+          }
+
+          .sc-info-bar-count {
+            margin-right: 10px;
+            font-size: 14px;
+          }
+
+          .sc-footer {
+            display: none;
+          }
+
+          .sc-mobile-controls {
+            position: fixed;
+            left: 8px;
+            right: 8px;
+            bottom: max(8px, env(safe-area-inset-bottom));
+            z-index: 60;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            pointer-events: all;
+          }
+        }
       `}</style>
 
       <div className="sc-root" role="navigation">
@@ -574,30 +655,53 @@ export default function Socials() {
         </div>
       )}
 
-      {mounted && Array.from({ length: ITEMS[active].bars }).map((_, i) => (
-        <div
-          className={`sc-info-bar-wrap${activeInfoBar === i ? " selected" : ""}`}
-          key={`bar-${active}-${i}`}
-          style={{ top: `${155 + i * 52}px`, animationDelay: `${i * 50}ms` }}
-          onClick={() => setActiveInfoBar(i)}
-          onMouseEnter={() => setActiveInfoBar(i)}
-        >
-          {ITEMS[active].newBars.includes(i) && (
-            <img className="sc-info-bar-new" src={newsign} alt="" />
-          )}
-          <div className="sc-info-bar">
-            <img className="sc-info-bar-icon" src={ITEMS[active].barIcon} alt="" />
-            <span className="sc-info-bar-text">{ITEMS[active].links[i].slice(0, 10)}...</span>
-            <span className="sc-info-bar-box">VIEWS</span>
-            <span className="sc-info-bar-count">{ITEMS[active].counts[i]}</span>
-          </div>
+      {mounted && (
+        <div className="sc-info-panel" key={`panel-${active}`}>
+          {Array.from({ length: ITEMS[active].bars }).map((_, i) => (
+            <div
+              className={`sc-info-bar-wrap${activeInfoBar === i ? " selected" : ""}`}
+              key={`bar-${active}-${i}`}
+              style={{ animationDelay: `${i * 50}ms` }}
+              onClick={() => {
+                if (isMobileViewport || activeInfoBar === i) {
+                  window.open("https://" + ITEMS[active].links[i], "_blank");
+                  return;
+                }
+                setActiveInfoBar(i);
+              }}
+              onMouseEnter={() => setActiveInfoBar(i)}
+            >
+              {ITEMS[active].newBars.includes(i) && (
+                <img className="sc-info-bar-new" src={newsign} alt="" />
+              )}
+              <div className="sc-info-bar">
+                <img className="sc-info-bar-icon" src={ITEMS[active].barIcon} alt="" />
+                <span className="sc-info-bar-text">{ITEMS[active].links[i].slice(0, 10)}...</span>
+                <span className="sc-info-bar-box">VIEWS</span>
+                <span className="sc-info-bar-count">{ITEMS[active].counts[i]}</span>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
 
       <div className={`sc-footer${mounted ? " mounted" : ""}`}>
         <div className="sc-footer-row"><span className="sc-footer-key">↑↓</span><span>SELECT</span></div>
         <div className="sc-footer-row"><span className="sc-footer-key">↵</span><span>OPEN</span></div>
         <div className="sc-footer-row"><span className="sc-footer-key">ESC</span><span>BACK</span></div>
+      </div>
+
+      <div className="sc-mobile-controls" aria-label="Socials mobile controls">
+        <button className="sc-mobile-btn" type="button" onClick={() => navigate(-1)}>
+          BACK
+        </button>
+        <button
+          className="sc-mobile-btn"
+          type="button"
+          onClick={() => window.open(ITEMS[active].href, "_blank")}
+        >
+          OPEN
+        </button>
       </div>
     </div>
   );

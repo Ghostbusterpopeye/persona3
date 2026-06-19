@@ -202,6 +202,13 @@ export default function P3Menu() {
                   marginTop: item.offsetY,
                   transitionDelay: mounted ? `${i * 80}ms` : "0ms",
                 }}
+
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (item.page === "github") window.open("https://github.com/Ghostbusterpopeye", "_blank");
+                  else if (item.page === "sideproj") window.open("mailto:sultanshalahuddin01@gmail.com", "_blank");
+                  else onNavigate?.(item.page);
+                }}
                 onMouseEnter={() => setActive(i)}
                 aria-current={isActive ? "page" : undefined}
               >

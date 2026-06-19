@@ -41,6 +41,8 @@ export default function ResumePage({ src }) {
   const [active, setActive] = useState(1);
   const [mounted, setMounted] = useState(false);
 
+  const [selectedRow, setSelectedRow] = useState(null);
+
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 80);
     return () => clearTimeout(t);
@@ -432,9 +434,11 @@ export default function ResumePage({ src }) {
               style={{ transitionDelay: `${index * 55}ms` }}
               onMouseEnter={() => {
                 setActive(index);
+                setSelectedRow(null);
               }}
               onClick={() => {
                 setActive(index);
+                setSelectedRow(null);
               }}
             >
               <div className="resume-card">
@@ -478,7 +482,6 @@ export default function ResumePage({ src }) {
               ))}
             </div>
 
-            {/* Viewer dinamis saat row diklik */}
             {selectedRow && (
               <div className="resume-selected-viewer">
                 <div className="resume-selected-title">LOG: {selectedRow.title}</div>

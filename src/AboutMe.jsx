@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import char1 from "./assets/char1.png";
 import char2 from "./assets/char2.png";
 import char3 from "./assets/char3.png";
-import bgVideo from "./assets/main1.mp4";
 import icon1 from "./assets/icon1.png";
 import icon2 from "./assets/icon2.png";
 import icon3 from "./assets/icon3.png";
@@ -11,29 +10,31 @@ import mainm from "./assets/mainm.jpeg";
 import mainm2 from "./assets/mainm2.jpeg";
 import mainf from "./assets/mainf.jpeg";
 
+const bgVideo = "/main1.mp4";
+
 const CHARS = [char1, char2, char3];
 const MAIN_IMAGES = [mainm, mainm2, mainf];
 
 const REVEAL_CONTENT = [
   {
-    upper: ["name moneybagg", "age:23"],
-    lower: "major: computer science",
+    upper: ["Sultan Shalahuddin", "Jember, Indonesia"],
+    lower: "Major: Computer Science — Frontend / Design Engineer",
   },
   {
     upper: [
-      "Cleopatra lived closer to the Moon landing than to the building of the pyramids.",
-      "Vikings kept cats on ships for pest control (and vibes).",
-      "In medieval Europe, animals could be put on trial for crimes",
+      "Tefa Canning Polije — Company profile website (JavaScript, CSS)",
+      "UPA TIK Polije Visit System — Visitor management portal (PHP, MySQL, JS, CSS)",
+      "Internship @ PT Gamelab Indonesia — 3D asset pipelines & creative digital production",
     ],
-    lower: "abbove is some history fun fact",
+    lower: "Projects & Experience — 2024–2026",
   },
   {
     upper: [
-      "Oxford University founding is older than the Aztec Empire.",
-      "The shortest war in history lasted 38–45 minutes (Britain vs Zanzibar).",
-      "Humans have been writing for ~5,000 years",
+      "Email: sultanshalahuddin01@gmail.com",
+      "GitHub: github.com/Ghostbusterpopeye",
+      "LinkedIn: linkedin.com/in/sultan-alayubi-524760284",
     ],
-    lower: "yes it's a place holder",
+    lower: "Exploring new opportunities — Open to work",
   },
 ];
 
@@ -45,27 +46,31 @@ const ROLES = [
 
 const ITEMS = [
   {
-    id: "twitch", label: "ABOUT ME", handle: "@yourname", href: "https://twitch.tv/yourname", icon: "🎮", barIcon: icon1, bars: 1, newBars: [0], counts: ["56"],
-    links: ["twitch.tv/videos/2041837265"],
+    id: "profile", label: "ABOUT ME", handle: "@sultan", href: "https://github.com/Ghostbusterpopeye", icon: "👤", barIcon: icon1, bars: 1, newBars: [0], counts: ["2026"],
+    links: ["github.com/Ghostbusterpopeye"],
     stats: [
-      { tag: "FOL", value: "1.2K", color: "#9147ff" },
-      { tag: "VWR", value: "042",  color: "#bf94ff" },
+      { tag: "UNI", value: "POLIJE", color: "#4a8fff" },
+      { tag: "YR",  value: "2026",   color: "#53edff" },
     ],
   },
   {
-    id: "instagram", label: "FUN FACT ABOUT ME", handle: "@yourhandle", href: "https://instagram.com/yourhandle", icon: "📷", barIcon: icon2, bars: 5, newBars: [1, 2], counts: ["3.4M", "2.5M", "676K", "412K", "198K"],
-    links: ["instagram.com/p/C4xQmRrNk2a", "instagram.com/p/C3wLpBsOj7f", "instagram.com/reel/C2vKoArMi6e", "instagram.com/p/C1uJnZqLh5d", "instagram.com/reel/C0tImYpKg4c"],
+    id: "projects", label: "PROJECTS", handle: "@sultan", href: "https://github.com/Ghostbusterpopeye", icon: "💻", barIcon: icon2, bars: 2, newBars: [1], counts: ["2025", "2026"],
+    links: ["github.com/Ghostbusterpopeye", "github.com/Ghostbusterpopeye"],
     stats: [
-      { tag: "FOL", value: "3.4K", color: "#e1306c" },
-      { tag: "PST", value: "128",  color: "#f77737" },
+      { tag: "PRJ", value: "2",    color: "#e1306c" },
+      { tag: "NEW", value: "001",  color: "#f77737" },
     ],
   },
   {
-    id: "tiktok", label: "WIRED FACT ABOUT ME", handle: "@yourhandle", href: "https://tiktok.com/@yourhandle", icon: "🎵", barIcon: icon3, bars: 7, newBars: [0, 3, 5, 6], counts: ["5.1M", "3.7M", "2.2M", "1.4M", "831K", "490K", "217K"],
-    links: ["tiktok.com/@yourhandle/video/7318492016374859054", "tiktok.com/@yourhandle/video/7305837261940183342", "tiktok.com/@yourhandle/video/7291046385720348974", "tiktok.com/@yourhandle/video/7278392047163820334", "tiktok.com/@yourhandle/video/7264819203847165742", "tiktok.com/@yourhandle/video/7251047382916430126", "tiktok.com/@yourhandle/video/7237294018463851822"],
+    id: "contact", label: "CONTACT", handle: "@sultan", href: "mailto:sultanshalahuddin01@gmail.com", icon: "📬", barIcon: icon3, bars: 3, newBars: [0], counts: ["EMAIL", "GITHUB", "LINKEDIN"],
+    links: [
+      "mailto:sultanshalahuddin01@gmail.com",
+      "github.com/Ghostbusterpopeye",
+      "linkedin.com/in/sultan-alayubi-524760284",
+    ],
     stats: [
-      { tag: "FOL", value: "8.9K", color: "#00f2ea" },
-      { tag: "LKS", value: "52K",  color: "#ff0050" },
+      { tag: "STS", value: "OPEN",  color: "#22ff66" },
+      { tag: "LOC", value: "JMB",   color: "#53edff" },
     ],
   },
 ];
@@ -75,21 +80,6 @@ export default function AboutMe() {
   const [mounted, setMounted] = useState(false);
   const [revealed, setRevealed] = useState(false);
   const navigate = useNavigate();
-
-  const isMobileViewport =
-    typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
-
-  const handleBarClick = (index) => {
-    if (isMobileViewport && active === index) {
-      setRevealed((prev) => !prev);
-      return;
-    }
-
-    setActive(index);
-    if (isMobileViewport) {
-      setRevealed(false);
-    }
-  };
 
   useEffect(() => {
     const t = setTimeout(() => setMounted(true), 60);
@@ -304,24 +294,20 @@ export default function AboutMe() {
           top: 58%;
           right: 0;
           width: 48%;
-          min-height: 20%;
-          max-height: 34%;
+          height: 20%;
           background: rgba(0, 0, 0, 0.92);
           clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
           box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
           display: flex;
-          align-items: flex-start;
+          align-items: center;
           justify-content: flex-start;
           color: #fff;
           font-family: 'Montserrat', sans-serif;
           font-weight: 300;
           font-size: 22px;
-          line-height: 1.18;
           letter-spacing: 0.4px;
           text-transform: lowercase;
-          white-space: normal;
-          overflow-y: auto;
-          padding: 10px 18px 10px 22px;
+          padding-left: 22px;
         }
 
         @keyframes sc-right-nav-pop {
@@ -628,136 +614,6 @@ export default function AboutMe() {
           border-radius: 3px;
           padding: 1px 6px; font-size: 11px;
         }
-
-        .sc-mobile-controls {
-          display: none;
-        }
-
-        .sc-mobile-btn {
-          border: 1px solid rgba(255, 255, 255, 0.28);
-          background: rgba(0, 0, 0, 0.6);
-          color: #fff;
-          font-family: 'Bebas Neue', sans-serif;
-          letter-spacing: 1.2px;
-          font-size: 13px;
-          padding: 7px 12px;
-          border-radius: 8px;
-          min-width: 86px;
-        }
-
-        @media (max-width: 768px) {
-          .sc-main-portrait-shell {
-            top: 8vh;
-            right: -9vw;
-            width: 46vw;
-            height: 44vh;
-            z-index: 13;
-          }
-
-          .sc-main-portrait {
-            transform: none;
-            object-position: center top;
-          }
-
-          .sc-reveal-panel {
-            top: 44vh !important;
-            left: 4vw !important;
-            right: 6vw !important;
-            width: auto !important;
-            height: 50vh !important;
-            z-index: 14;
-            transform: translateX(0) rotate(0deg) !important;
-            clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
-            box-shadow:
-              0 0 0 2px rgba(255,255,255,0.24),
-              10px 0 0 rgba(215, 13, 44, 0.9),
-              16px 0 0 rgba(255,255,255,0.24);
-          }
-
-          .sc-reveal-panel.mounted {
-            transform: translateX(0) rotate(0deg) !important;
-          }
-
-          .sc-reveal-panel::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 18px;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(224,61,49,0.95) 0%, rgba(168,22,43,0.92) 100%);
-            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
-            opacity: 0.95;
-            pointer-events: none;
-          }
-
-          .sc-reveal-upper-bar {
-            top: 10%;
-            height: 46%;
-            width: 96%;
-            left: 2%;
-          }
-
-          .sc-reveal-upper-line {
-            font-size: 14px;
-            line-height: 1.1;
-            padding: 0 10px;
-          }
-
-          .sc-reveal-lower-bar {
-            top: 62%;
-            width: 88%;
-            bottom: 8%;
-            height: auto;
-            max-height: none;
-            font-size: 15px;
-            line-height: 1.2;
-            padding: 8px 12px 8px 12px;
-          }
-
-          .sc-right-nav {
-            top: 2vh;
-            left: 4vw;
-            transform: translateX(0) rotate(-12deg);
-          }
-
-          .sc-mobile-controls {
-            position: fixed;
-            left: 8px;
-            right: 8px;
-            bottom: max(8px, env(safe-area-inset-bottom));
-            z-index: 18;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-            pointer-events: all;
-          }
-
-          .sc-footer {
-            display: none;
-          }
-        }
-
-        @media (min-width: 769px) and (max-width: 1200px) {
-          .sc-main-portrait-shell {
-            right: -6vw;
-            width: 44vw;
-            height: 92vh;
-          }
-
-          .sc-reveal-panel {
-            top: 46vh;
-            left: -2vw;
-            width: 78vw;
-            height: 52vh;
-            transform: translateX(0) rotate(-14deg);
-          }
-
-          .sc-reveal-panel.mounted {
-            transform: translateX(0) rotate(-14deg);
-          }
-        }
       `}</style>
 
       <div className="sc-root" role="navigation">
@@ -766,7 +622,7 @@ export default function AboutMe() {
             key={item.id}
             className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
             onClick={() => {
-              handleBarClick(i);
+              setActive(i);
             }}
             onMouseEnter={() => {
               setActive(i);
@@ -794,15 +650,6 @@ export default function AboutMe() {
         <div className="sc-footer-row"><span className="sc-footer-key">↑↓</span><span>SELECT</span></div>
         <div className="sc-footer-row"><span className="sc-footer-key">↵</span><span>REVEAL</span></div>
         <div className="sc-footer-row"><span className="sc-footer-key">ESC</span><span>BACK</span></div>
-      </div>
-
-      <div className="sc-mobile-controls" aria-label="About mobile controls">
-        <button className="sc-mobile-btn" type="button" onClick={() => navigate(-1)}>
-          BACK
-        </button>
-        <button className="sc-mobile-btn" type="button" onClick={() => setRevealed((prev) => !prev)}>
-          {revealed ? "HIDE" : "REVEAL"}
-        </button>
       </div>
     </div>
   );

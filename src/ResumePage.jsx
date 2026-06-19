@@ -422,21 +422,6 @@ export default function ResumePage({ src }) {
 
       `}</style>
 
-      <div className="resume-overlay">
-        <div className="resume-stack">
-          <div className={`resume-list-tag${mounted ? " mounted" : ""}`}>LIST</div>
-          {ITEMS.map((item, index) => (
-            <div
-              key={item.id}
-              className={`resume-card-wrap${active === index ? " active" : ""}${mounted ? " mounted" : ""}`}
-              style={{ transitionDelay: `${index * 55}ms` }}
-              onMouseEnter={() => {
-                setActive(index);
-              }}
-              onClick={() => {
-                setActive(index);
-              }}
-            >
 <div className="resume-overlay">
         <div className="resume-stack">
           <div className={`resume-list-tag${mounted ? " mounted" : ""}`}>LIST</div>

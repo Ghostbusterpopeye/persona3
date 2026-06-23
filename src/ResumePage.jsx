@@ -27,7 +27,7 @@ const SKILLS_ROWS = [
 
 const PROJECTS_ROWS = [
   { index: "01", title: " UPA TIK Polije Visit System", status: "PHP/MySQL" },
-  { index: "02", title: "Tefa Canning Polije Profile Portal", status: "JS/CSS" }
+  { index: "02", title: "Tefa Canning Polije Company Profile", status: "JS/CSS" }
 ];
 
 const EXPERIENCE_ROWS = [
@@ -36,11 +36,45 @@ const EXPERIENCE_ROWS = [
   { index: "03", title: "Production Staff at ORI Studio", status: "22 - 25" }
 ];
 
+const DETAIL_BULLETS = [
+  {
+    title: "EDUCATION DETAILS",
+    bullets: [
+      "- Currently pursuing an Informatics Engineering major with a focus on core software foundations.",
+      "- Active coursework in Web Development, Database Management Systems, and Object-Oriented Programming.",
+      "- Integrating theoretical computer science fundamentals directly into portfolio-ready applications."
+    ]
+  },
+  {
+    title: "SKILLS BREAKDOWN",
+    bullets: [
+      "- Experienced in Full-Stack web production utilizing modern JavaScript, PHP ecosystems, and clean CSS architectures.",
+      "- Advanced asset pipeline creation, including professional 3D asset modeling, staging, and texturing using Blender.",
+      "- Competent in high-fidelity vector UI/UX design (Figma) and dynamic broadcast motion graphics (After Effects)."
+    ]
+  },
+  {
+    title: "PROJECT SPECS",
+    bullets: [
+      "- UPA TIK Visit System: Built a secure, multi-level access portal leveraging robust PHP backend models.",
+      "- Tefa Canning Corporate Profile: Crafted high-performance custom user interactions and clean layout standards.",
+      "- Version control and code distribution systematically managed on production repositories via GitHub."
+    ]
+  },
+  {
+    title: "EXPERIENCE LOG",
+    bullets: [
+      "- 3D Generalist Intern at PT Gamelab Indonesia: Managed production-level 3D asset workflows and pipelines.",
+      "- Professional tenure as a Graphic and Brand Designer delivering client production and vector visual assets.",
+      "- Production Staff at ORI Studio: Managed operational media assembly and collaborative content distribution."
+    ]
+  }
+];
+
 export default function ResumePage({ src }) {
   const navigate = useNavigate();
   const [active, setActive] = useState(1);
   const [mounted, setMounted] = useState(false);
-
   const [selectedRow, setSelectedRow] = useState(null);
 
   useEffect(() => {
@@ -421,7 +455,6 @@ export default function ResumePage({ src }) {
             pointer-events: all;
           }
         }
-
       `}</style>
 
       <div className="resume-overlay">
@@ -432,12 +465,8 @@ export default function ResumePage({ src }) {
               key={item.id}
               className={`resume-card-wrap${active === index ? " active" : ""}${mounted ? " mounted" : ""}`}
               style={{ transitionDelay: `${index * 55}ms` }}
-              onMouseEnter={() => {
-                setActive(index);
-              }}
-              onClick={() => {
-                setActive(index);
-              }}
+              onMouseEnter={() => setActive(index)}
+              onClick={() => setActive(index)}
             >
               <div className="resume-card">
                 <div className="resume-badge">
@@ -458,6 +487,7 @@ export default function ResumePage({ src }) {
           ))}
         </div>
 
+        {/* ── PANEL DETAIL KANAN (DATA DETAILS BERUBAH DINAMIS) ── */}
         {active === 0 && (
           <div className="resume-detail-panel">
             <div className="resume-detail-top">
@@ -488,11 +518,11 @@ export default function ResumePage({ src }) {
             )}
 
             <div className="resume-detail-bottom">
-              <div className="resume-detail-bottom-title">DETAILS</div>
+              <div className="resume-detail-bottom-title">{DETAIL_BULLETS[active].title}</div>
               <div className="resume-detail-bullets">
-                <div className="resume-detail-bullet">- Maintain progress across required classes and supporting work.</div>
-                <div className="resume-detail-bullet">- Track portfolio-ready projects tied to coursework and labs.</div>
-                <div className="resume-detail-bullet">- Keep materials prepared for internships, research, and review.</div>
+                {DETAIL_BULLETS[active].bullets.map((bullet, idx) => (
+                  <div className="resume-detail-bullet" key={idx}>{bullet}</div>
+                ))}
               </div>
             </div>
           </div>
@@ -528,11 +558,11 @@ export default function ResumePage({ src }) {
             )}
 
             <div className="resume-detail-bottom">
-              <div className="resume-detail-bottom-title">DETAILS</div>
+              <div className="resume-detail-bottom-title">{DETAIL_BULLETS[active].title}</div>
               <div className="resume-detail-bullets">
-                <div className="resume-detail-bullet">- Maintain progress across required classes and supporting work.</div>
-                <div className="resume-detail-bullet">- Track portfolio-ready projects tied to coursework and labs.</div>
-                <div className="resume-detail-bullet">- Keep materials prepared for internships, research, and review.</div>
+                {DETAIL_BULLETS[active].bullets.map((bullet, idx) => (
+                  <div className="resume-detail-bullet" key={idx}>{bullet}</div>
+                ))}
               </div>
             </div>
           </div>
@@ -568,11 +598,11 @@ export default function ResumePage({ src }) {
             )}
 
             <div className="resume-detail-bottom">
-              <div className="resume-detail-bottom-title">DETAILS</div>
+              <div className="resume-detail-bottom-title">{DETAIL_BULLETS[active].title}</div>
               <div className="resume-detail-bullets">
-                <div className="resume-detail-bullet">- Maintain progress across required classes and supporting work.</div>
-                <div className="resume-detail-bullet">- Track portfolio-ready projects tied to coursework and labs.</div>
-                <div className="resume-detail-bullet">- Keep materials prepared for internships, research, and review.</div>
+                {DETAIL_BULLETS[active].bullets.map((bullet, idx) => (
+                  <div className="resume-detail-bullet" key={idx}>{bullet}</div>
+                ))}
               </div>
             </div>
           </div>
@@ -608,16 +638,15 @@ export default function ResumePage({ src }) {
             )}
 
             <div className="resume-detail-bottom">
-              <div className="resume-detail-bottom-title">DETAILS</div>
+              <div className="resume-detail-bottom-title">{DETAIL_BULLETS[active].title}</div>
               <div className="resume-detail-bullets">
-                <div className="resume-detail-bullet">- Maintain progress across required classes and supporting work.</div>
-                <div className="resume-detail-bullet">- Track portfolio-ready projects tied to coursework and labs.</div>
-                <div className="resume-detail-bullet">- Keep materials prepared for internships, research, and review.</div>
+                {DETAIL_BULLETS[active].bullets.map((bullet, idx) => (
+                  <div className="resume-detail-bullet" key={idx}>{bullet}</div>
+                ))}
               </div>
             </div>
           </div>
         )}
-
       </div>
 
       <div className="resume-mobile-controls" aria-label="Resume mobile controls">

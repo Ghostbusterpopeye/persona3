@@ -173,6 +173,11 @@ export default function AboutMe() {
           justify-content: center;
           gap: 6px;
         }
+        /* Bar harus bisa diklik meski parent pointer-events:none */
+        .sc-bar-outer,
+        .sc-bar-outer * {
+          pointer-events: all;
+        }
 
         /* ── DIM ── */
         .sc-dim {
@@ -310,7 +315,7 @@ export default function AboutMe() {
           position:relative; flex-shrink:0;
           transform:translateX(-100%);
           transition:transform 0.55s cubic-bezier(0.22,1,0.36,1);
-          cursor:pointer; pointer-events:all;
+          cursor:pointer;
         }
         .sc-bar-outer.mounted  { transform:translateX(0); }
         .sc-bar-outer:nth-child(1) { transition-delay:0ms; }

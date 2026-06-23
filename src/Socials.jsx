@@ -9,7 +9,6 @@ import icon1 from "./assets/icon1.png";
 import icon2 from "./assets/icon2.png";
 import icon3 from "./assets/icon3.png";
 
-
 const CHARS = [char1, char2, char3];
 
 const ROLES = [
@@ -20,36 +19,70 @@ const ROLES = [
 
 const ITEMS = [
   {
-    id: "twitch", label: "TWITCH", handle: "@yourname", href: "https://twitch.tv/yourname", icon: "🎮", barIcon: icon1, bars: 1, newBars: [0], counts: ["56"],
-    links: ["twitch.tv/videos/2041837265"],
+    id: "github",
+    label: "GITHUB",
+    handle: "@Ghostbusterpopeye",
+    href: "https://github.com/Ghostbusterpopeye",
+    icon: "🐙",
+    barIcon: icon1,
+    bars: 1,
+    newBars: [0],
+    counts: ["VIEW"],
+    links: ["github.com/Ghostbusterpopeye"],
     stats: [
-      { tag: "FOL", value: "1.2K", color: "#9147ff" },
-      { tag: "VWR", value: "042",  color: "#bf94ff" },
+      { tag: "DEV", value: "CODE", color: "#6e40c9" },
+      { tag: "SRC", value: "PUB",  color: "#8b5cf6" },
     ],
   },
   {
-    id: "instagram", label: "INSTAGRAM", handle: "@yourhandle", href: "https://instagram.com/yourhandle", icon: "📷", barIcon: icon2, bars: 5, newBars: [1, 2], counts: ["3.4M", "2.5M", "676K", "412K", "198K"],
-    links: ["instagram.com/p/C4xQmRrNk2a", "instagram.com/p/C3wLpBsOj7f", "instagram.com/reel/C2vKoArMi6e", "instagram.com/p/C1uJnZqLh5d", "instagram.com/reel/C0tImYpKg4c"],
+    id: "instagram",
+    label: "INSTAGRAM",
+    handle: "@alayubi_sultan",
+    href: "https://www.instagram.com/alayubi_sultan/",
+    icon: "📷",
+    barIcon: icon2,
+    bars: 1,
+    newBars: [0],
+    counts: ["VISIT"],
+    links: ["instagram.com/alayubi_sultan"],
     stats: [
-      { tag: "FOL", value: "3.4K", color: "#e1306c" },
-      { tag: "PST", value: "128",  color: "#f77737" },
+      { tag: "FOL", value: "IGS",  color: "#e1306c" },
+      { tag: "PST", value: "OPEN", color: "#f77737" },
     ],
   },
   {
-    id: "tiktok", label: "TIKTOK", handle: "@yourhandle", href: "https://tiktok.com/@yourhandle", icon: "🎵", barIcon: icon3, bars: 7, newBars: [0, 3, 5, 6], counts: ["5.1M", "3.7M", "2.2M", "1.4M", "831K", "490K", "217K"],
-    links: ["tiktok.com/@yourhandle/video/7318492016374859054", "tiktok.com/@yourhandle/video/7305837261940183342", "tiktok.com/@yourhandle/video/7291046385720348974", "tiktok.com/@yourhandle/video/7278392047163820334", "tiktok.com/@yourhandle/video/7264819203847165742", "tiktok.com/@yourhandle/video/7251047382916430126", "tiktok.com/@yourhandle/video/7237294018463851822"],
+    id: "linkedin",
+    label: "LINKEDIN",
+    handle: "@sultan-alayubi",
+    href: "https://www.linkedin.com/in/sultan-alayubi-524760284/",
+    icon: "💼",
+    barIcon: icon3,
+    bars: 2,
+    newBars: [0],
+    counts: ["CONNECT", "EMAIL"],
+    links: [
+      "linkedin.com/in/sultan-alayubi-524760284",
+      "mail.google.com/mail/?view=cm&to=sultanshalahuddin01@gmail.com",
+    ],
     stats: [
-      { tag: "FOL", value: "8.9K", color: "#00f2ea" },
-      { tag: "LKS", value: "52K",  color: "#ff0050" },
+      { tag: "NET", value: "PRO",  color: "#0a66c2" },
+      { tag: "STS", value: "OPEN", color: "#22ff66" },
     ],
   },
 ];
+
+// Label yang ditampilkan di info bar panel kanan
+const INFO_LABELS = {
+  github:    ["GITHUB PROFILE"],
+  instagram: ["INSTAGRAM PROFILE"],
+  linkedin:  ["LINKEDIN PROFILE", "SEND EMAIL"],
+};
 
 export default function Socials() {
   const [active, setActive]               = useState(0);
   const [mounted, setMounted]             = useState(false);
   const [activeInfoBar, setActiveInfoBar] = useState(0);
-  const [focus, setFocus]                 = useState("left"); // "left" | "right"
+  const [focus, setFocus]                 = useState("left");
   const navigate = useNavigate();
 
   const isMobileViewport =
@@ -78,7 +111,7 @@ export default function Socials() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [active, navigate, focus]);
+  }, [active, navigate, focus, activeInfoBar]);
 
   return (
     <div id="menu-screen">
@@ -99,7 +132,6 @@ export default function Socials() {
           padding-left: 0;
         }
 
-        /* ── Each bar ── */
         .sc-bar {
           position: relative;
           width: 45vw;
@@ -113,7 +145,6 @@ export default function Socials() {
           z-index: 1;
         }
 
-        /* wrapper holds both the red underlay and the bar */
         .sc-bar-outer {
           position: relative;
           flex-shrink: 0;
@@ -127,7 +158,6 @@ export default function Socials() {
         .sc-bar-outer:nth-child(2) { transition-delay: 80ms; }
         .sc-bar-outer:nth-child(3) { transition-delay: 160ms; }
 
-        /* red underlay — peeks out below the bar when active */
         .sc-bar-red {
           position: absolute;
           top: 0; left: 0;
@@ -137,13 +167,12 @@ export default function Socials() {
           clip-path: polygon(50% 0, 100% 0, 100% 100%, calc(50% - 10px) 100%);
           transform: translateY(-7px);
           opacity: 0;
-          transition: opacity 0.2s ease;
+          transition: opacity 0.2s ease, height 0.3s cubic-bezier(0.22,1,0.36,1);
           z-index: 0;
           pointer-events: none;
         }
         .sc-bar-outer.active .sc-bar-red { opacity: 1; }
 
-        /* white fill — skewed parallelogram on the right 25% */
         .sc-bar-fill {
           position: absolute;
           inset: 0;
@@ -157,7 +186,6 @@ export default function Socials() {
           clip-path: polygon(22% 0, 100% 0, calc(100% - 14px) 100%, calc(22% + 138px) 100%);
         }
 
-        /* shade on the left edge of the white fill */
         .sc-bar-shade {
           position: absolute;
           top: 0; bottom: 0;
@@ -171,7 +199,6 @@ export default function Socials() {
         }
         .sc-bar-outer.active .sc-bar-shade { opacity: 1; }
 
-        /* bottom shadow line under each bar */
         .sc-bar::after {
           content: '';
           position: absolute;
@@ -182,7 +209,6 @@ export default function Socials() {
           pointer-events: none;
         }
 
-        /* content layout inside each bar */
         .sc-bar-content {
           position: relative;
           z-index: 2;
@@ -193,7 +219,6 @@ export default function Socials() {
           padding: 0 20px 0 20px;
         }
 
-        /* left: role label */
         .sc-role {
           display: flex;
           align-items: center;
@@ -208,7 +233,6 @@ export default function Socials() {
           padding: 0 16px 0 8px;
         }
 
-        /* left: icon + name centered in remaining space */
         .sc-main {
           flex: 1;
           display: flex;
@@ -246,7 +270,16 @@ export default function Socials() {
         }
         .sc-bar-outer.active .sc-label { color: #111111; }
 
-        /* lb/rb nav row */
+        .sc-handle {
+          font-family: 'Bebas Neue', sans-serif;
+          font-size: 14px;
+          letter-spacing: 2px;
+          color: rgba(255,255,255,0.35);
+          transition: color 0.2s ease;
+          user-select: none;
+        }
+        .sc-bar-outer.active .sc-handle { color: rgba(0,0,0,0.45); }
+
         @keyframes sc-arrow-left {
           0%, 100% { transform: translateX(0); opacity: 1; }
           50%       { transform: translateX(-5px); opacity: 0.4; }
@@ -255,25 +288,7 @@ export default function Socials() {
           0%, 100% { transform: translateX(0); opacity: 1; }
           50%       { transform: translateX(5px); opacity: 0.4; }
         }
-        .sc-nav-btn {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 12px;
-          letter-spacing: 2px;
-          color: #111;
-          border: 1px solid rgba(0,0,0,0.35);
-          padding: 1px 7px;
-          line-height: 1.5;
-          user-select: none;
-        }
-        .sc-nav-arrow {
-          font-size: 12px;
-          color: #c4001a;
-          display: inline-block;
-        }
-        .sc-nav-arrow.left  { animation: sc-arrow-left  0.8s ease-in-out infinite; }
-        .sc-nav-arrow.right { animation: sc-arrow-right 0.8s ease-in-out infinite; }
 
-        /* right: stats group */
         .sc-stats {
           display: flex;
           align-items: center;
@@ -281,19 +296,8 @@ export default function Socials() {
           padding-right: 24px;
           flex-shrink: 0;
         }
-
-        .sc-stat {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .sc-stat-top {
-          display: flex;
-          align-items: baseline;
-          gap: 4px;
-        }
-
+        .sc-stat { display: flex; flex-direction: column; align-items: flex-start; }
+        .sc-stat-top { display: flex; align-items: baseline; gap: 4px; }
         .sc-stat-tag {
           font-family: 'Bebas Neue', sans-serif;
           font-size: 9px;
@@ -304,7 +308,6 @@ export default function Socials() {
           line-height: 1.4;
           user-select: none;
         }
-
         .sc-stat-num {
           font-family: 'Bebas Neue', sans-serif;
           font-size: 26px;
@@ -316,31 +319,14 @@ export default function Socials() {
           transition: color 0.2s ease;
         }
         .sc-bar-outer.active .sc-stat-num { color: #111111; }
+        .sc-stat-bars { width: 100%; display: flex; flex-direction: column; gap: 1px; margin-top: 2px; }
+        .sc-stat-bar-color { height: 3px; width: 100%; }
+        .sc-stat-bar-black { height: 2px; width: 100%; background: #000; }
 
-        .sc-stat-bars {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 1px;
-          margin-top: 2px;
-        }
-        .sc-stat-bar-color {
-          height: 3px;
-          width: 100%;
-        }
-        .sc-stat-bar-black {
-          height: 2px;
-          width: 100%;
-          background: #000;
-        }
-
-        /* character portrait */
         .sc-char {
           position: absolute;
-          top: 0;
-          left: 110px;
-          height: 100%;
-          width: auto;
+          top: 0; left: 110px;
+          height: 100%; width: auto;
           max-width: 160px;
           object-fit: cover;
           object-position: top;
@@ -349,7 +335,6 @@ export default function Socials() {
           clip-path: polygon(20px 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);
         }
 
-        /* right-side nav bar */
         @keyframes sc-right-nav-pop {
           0%   { opacity: 0; transform: scale(0.55) translateY(-10px); }
           65%  { opacity: 1; transform: scale(1.1) translateY(2px); }
@@ -357,8 +342,7 @@ export default function Socials() {
         }
         .sc-right-nav {
           position: fixed;
-          top: 40px;
-          right: 40px;
+          top: 40px; right: 40px;
           display: flex;
           align-items: center;
           gap: 6px;
@@ -398,13 +382,10 @@ export default function Socials() {
         .sc-right-nav .sc-nav-arrow.left  { animation: sc-arrow-left  0.8s ease-in-out infinite; }
         .sc-right-nav .sc-nav-arrow.right { animation: sc-arrow-right 0.8s ease-in-out infinite; }
 
-        /* info panel */
         .sc-info-panel {
           position: fixed;
-          top: 132px;
-          right: 0;
-          left: 65%;
-          bottom: 84px;
+          top: 132px; right: 0;
+          left: 65%; bottom: 84px;
           z-index: 50;
           display: flex;
           flex-direction: column;
@@ -422,8 +403,6 @@ export default function Socials() {
         }
         .sc-info-bar-wrap {
           position: relative;
-          right: auto;
-          left: auto;
           width: 100%;
           height: 46px;
           background: transparent;
@@ -440,8 +419,7 @@ export default function Socials() {
         }
         .sc-info-bar {
           position: relative;
-          width: 100%;
-          height: 100%;
+          width: 100%; height: 100%;
           background: transparent;
           display: flex;
           align-items: center;
@@ -453,10 +431,8 @@ export default function Socials() {
         }
         .sc-info-bar-new {
           position: absolute;
-          left: -40px;
-          bottom: 0;
-          height: 65%;
-          width: auto;
+          left: -40px; bottom: 0;
+          height: 65%; width: auto;
           pointer-events: none;
           z-index: 3;
         }
@@ -492,17 +468,14 @@ export default function Socials() {
           margin-right: 4px;
           user-select: none;
         }
-
         .sc-info-bar-icon {
-          height: 55%;
-          width: auto;
+          height: 55%; width: auto;
           flex-shrink: 0;
           margin-left: 14px;
           object-fit: contain;
           pointer-events: none;
           user-select: none;
         }
-
         .sc-info-bar-count {
           font-family: 'Bebas Neue', sans-serif;
           font-size: 22px;
@@ -513,7 +486,6 @@ export default function Socials() {
           user-select: none;
         }
 
-        /* footer hints */
         .sc-footer {
           position: fixed;
           bottom: 20px; right: 28px;
@@ -536,13 +508,10 @@ export default function Socials() {
           padding: 1px 6px; font-size: 11px;
         }
 
-        .sc-mobile-controls {
-          display: none;
-        }
-
+        .sc-mobile-controls { display: none; }
         .sc-mobile-btn {
-          border: 1px solid rgba(255, 255, 255, 0.28);
-          background: rgba(0, 0, 0, 0.62);
+          border: 1px solid rgba(255,255,255,0.28);
+          background: rgba(0,0,0,0.62);
           color: #fff;
           font-family: 'Bebas Neue', sans-serif;
           letter-spacing: 1.2px;
@@ -553,43 +522,19 @@ export default function Socials() {
         }
 
         @media (max-width: 768px) {
-          .sc-root {
-            justify-content: flex-start;
-            padding-top: 12px;
-            gap: 3px;
-          }
-
+          .sc-root { justify-content: flex-start; padding-top: 12px; gap: 3px; }
           .sc-info-panel {
             top: min(47vh, 320px);
-            left: 8px;
-            right: 8px;
-            bottom: 58px;
-            gap: 4px;
-            padding: 4px 0;
+            left: 8px; right: 8px; bottom: 58px;
+            gap: 4px; padding: 4px 0;
           }
-
-          .sc-info-bar-wrap {
-            height: 38px !important;
-          }
-
-          .sc-info-bar-text {
-            font-size: 15px;
-            letter-spacing: 1px;
-          }
-
-          .sc-info-bar-count {
-            margin-right: 10px;
-            font-size: 14px;
-          }
-
-          .sc-footer {
-            display: none;
-          }
-
+          .sc-info-bar-wrap { height: 38px !important; }
+          .sc-info-bar-text { font-size: 15px; letter-spacing: 1px; }
+          .sc-info-bar-count { margin-right: 10px; font-size: 14px; }
+          .sc-footer { display: none; }
           .sc-mobile-controls {
             position: fixed;
-            left: 8px;
-            right: 8px;
+            left: 8px; right: 8px;
             bottom: max(8px, env(safe-area-inset-bottom));
             z-index: 60;
             display: flex;
@@ -624,6 +569,7 @@ export default function Socials() {
                     <div className="sc-icon">{item.icon}</div>
                     <div className="sc-label">{item.label}</div>
                   </div>
+                  <div className="sc-handle">{item.handle}</div>
                 </div>
                 <div className="sc-stats">
                   {item.stats.map(s => (
@@ -657,31 +603,36 @@ export default function Socials() {
 
       {mounted && (
         <div className="sc-info-panel" key={`panel-${active}`}>
-          {Array.from({ length: ITEMS[active].bars }).map((_, i) => (
-            <div
-              className={`sc-info-bar-wrap${activeInfoBar === i ? " selected" : ""}`}
-              key={`bar-${active}-${i}`}
-              style={{ animationDelay: `${i * 50}ms` }}
-              onClick={() => {
-                if (isMobileViewport || activeInfoBar === i) {
-                  window.open("https://" + ITEMS[active].links[i], "_blank");
-                  return;
-                }
-                setActiveInfoBar(i);
-              }}
-              onMouseEnter={() => setActiveInfoBar(i)}
-            >
-              {ITEMS[active].newBars.includes(i) && (
-                <img className="sc-info-bar-new" src={newsign} alt="" />
-              )}
-              <div className="sc-info-bar">
-                <img className="sc-info-bar-icon" src={ITEMS[active].barIcon} alt="" />
-                <span className="sc-info-bar-text">{ITEMS[active].links[i].slice(0, 10)}...</span>
-                <span className="sc-info-bar-box">VIEWS</span>
-                <span className="sc-info-bar-count">{ITEMS[active].counts[i]}</span>
+          {Array.from({ length: ITEMS[active].bars }).map((_, i) => {
+            const labels = INFO_LABELS[ITEMS[active].id] ?? [];
+            return (
+              <div
+                className={`sc-info-bar-wrap${activeInfoBar === i ? " selected" : ""}`}
+                key={`bar-${active}-${i}`}
+                style={{ animationDelay: `${i * 50}ms` }}
+                onClick={() => {
+                  if (isMobileViewport || activeInfoBar === i) {
+                    window.open("https://" + ITEMS[active].links[i], "_blank");
+                    return;
+                  }
+                  setActiveInfoBar(i);
+                }}
+                onMouseEnter={() => setActiveInfoBar(i)}
+              >
+                {ITEMS[active].newBars.includes(i) && (
+                  <img className="sc-info-bar-new" src={newsign} alt="" />
+                )}
+                <div className="sc-info-bar">
+                  <img className="sc-info-bar-icon" src={ITEMS[active].barIcon} alt="" />
+                  <span className="sc-info-bar-text">
+                    {labels[i] ?? ITEMS[active].links[i]}
+                  </span>
+                  <span className="sc-info-bar-box">OPEN</span>
+                  <span className="sc-info-bar-count">{ITEMS[active].counts[i]}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
 
@@ -692,16 +643,8 @@ export default function Socials() {
       </div>
 
       <div className="sc-mobile-controls" aria-label="Socials mobile controls">
-        <button className="sc-mobile-btn" type="button" onClick={() => navigate(-1)}>
-          BACK
-        </button>
-        <button
-          className="sc-mobile-btn"
-          type="button"
-          onClick={() => window.open(ITEMS[active].href, "_blank")}
-        >
-          OPEN
-        </button>
+        <button className="sc-mobile-btn" type="button" onClick={() => navigate(-1)}>BACK</button>
+        <button className="sc-mobile-btn" type="button" onClick={() => window.open(ITEMS[active].href, "_blank")}>OPEN</button>
       </div>
     </div>
   );

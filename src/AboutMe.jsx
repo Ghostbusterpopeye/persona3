@@ -25,21 +25,23 @@ const REVEAL_CONTENT = [
   },
   {
     upper: [
-      "SKILLSET & TECH STACKS:",
-      "• BACKEND: PHP (MVC/NATIVE), MYSQL DATABASE",
-      "• FRONTEND: JAVASCRIPT, CSS, TAILWIND CSS",
-      "• TOOLS: FIGMA, BLENDER, AFTER EFFECTS, GITHUB"
+      "FUN FACT — PERSONA SERIES:",
+      "• PERSONA 3 INTRODUCED THE SOCIAL LINK SYSTEM",
+      "• TARTARUS HAS 264 FLOORS TO CLIMB",
+      "• THE EVOKER IS USED TO SUMMON A PERSONA",
+      "• MEMENTO MORI — REMEMBER THAT YOU WILL DIE"
     ],
-    lower: "passionate about crafting robust systems and high-fidelity interfaces. capable of transforming design wireframes into production-ready web applications.",
+    lower: "persona 3 is set during the dark hour — a hidden 25th hour at midnight where shadows roam and ordinary humans become coffins. only evoker users can stay awake.",
   },
   {
     upper: [
-      "VISION & GOALS:",
-      "• BUILD SCALABLE DIGITAL SOLUTIONS",
-      "• INNOVATE IN THE IT INDUSTRY",
-      "• FUTURE TECH ENTREPRENEUR"
+      "CAREER & CONTACT:",
+      "• INTERN @ PT GAMELAB INDONESIA (2024–2025)",
+      "• EMAIL: SULTANSHALAHUDDIN01@GMAIL.COM",
+      "• GITHUB: GITHUB.COM/GHOSTBUSTERPOPEYE",
+      "• LINKEDIN: SULTAN-ALAYUBI-524760284"
     ],
-    lower: "driven by a long-term goal to build a business in the technology sector. dedicated to continuously refining engineering skills and contributing to impactful digital projects.",
+    lower: "currently exploring new opportunities. open to collaborations, internships, and full-time roles in web development and design engineering. based in jember, indonesia.",
   },
 ];
 
@@ -49,52 +51,75 @@ const ROLES = [
   { text: "PARTY",  color: "#4a8fff", bg: "rgba(74,143,255,0.12)", border: "rgba(74,143,255,0.5)" },
 ];
 
+// ── FIXED: ITEMS sesuai data Sultan, bukan placeholder ──
 const ITEMS = [
   {
-    id: "twitch", label: "ABOUT ME", handle: "@yourname", href: "https://twitch.tv/yourname", icon: "🎮", barIcon: icon1, bars: 1, newBars: [0], counts: ["56"],
-    links: ["twitch.tv/videos/2041837265"],
+    id: "about",
+    label: "ABOUT ME",
+    handle: "@sultan",
+    href: "https://github.com/Ghostbusterpopeye",
+    icon: "👤",
+    barIcon: icon1,
+    bars: 1,
+    newBars: [0],
+    counts: ["2026"],
+    links: ["github.com/ghostbusterpopeye"],
     stats: [
-      { tag: "FOL", value: "1.2K", color: "#9147ff" },
-      { tag: "VWR", value: "042",  color: "#bf94ff" },
+      { tag: "UNI", value: "POLIJE", color: "#4a8fff" },
+      { tag: "YR",  value: "2026",   color: "#53edff" },
     ],
   },
   {
-    id: "instagram", label: "FUN FACT ABOUT ME", handle: "@yourhandle", href: "https://instagram.com/yourhandle", icon: "📷", barIcon: icon2, bars: 5, newBars: [1, 2], counts: ["3.4M", "2.5M", "676K", "412K", "198K"],
-    links: ["instagram.com/p/C4xQmRrNk2a", "instagram.com/p/C3wLpBsOj7f", "instagram.com/reel/C2vKoArMi6e", "instagram.com/p/C1uJnZqLh5d", "instagram.com/reel/C0tImYpKg4c"],
+    id: "funfact",
+    label: "FUN FACT",
+    handle: "@sultan",
+    href: "https://github.com/Ghostbusterpopeye",
+    icon: "🎮",
+    barIcon: icon2,
+    bars: 2,
+    newBars: [0],
+    counts: ["P3", "P4"],
+    links: ["github.com/ghostbusterpopeye"],
     stats: [
-      { tag: "FOL", value: "3.4K", color: "#e1306c" },
-      { tag: "PST", value: "128",  color: "#f77737" },
+      { tag: "SRS", value: "P3",   color: "#4a8fff" },
+      { tag: "HRS", value: "100+", color: "#53edff" },
     ],
   },
   {
-    id: "tiktok", label: "WIRED FACT ABOUT ME", handle: "@yourhandle", href: "https://tiktok.com/@yourhandle", icon: "🎵", barIcon: icon3, bars: 7, newBars: [0, 3, 5, 6], counts: ["5.1M", "3.7M", "2.2M", "1.4M", "831K", "490K", "217K"],
-    links: ["tiktok.com/@yourhandle/video/7318492016374859054", "tiktok.com/@yourhandle/video/7305837261940183342", "tiktok.com/@yourhandle/video/7291046385720348974", "tiktok.com/@yourhandle/video/7278392047163820334", "tiktok.com/@yourhandle/video/7264819203847165742", "tiktok.com/@yourhandle/video/7251047382916430126", "tiktok.com/@yourhandle/video/7237294018463851822"],
+    id: "career",
+    label: "CAREER",
+    handle: "@sultan",
+    href: "mailto:sultanshalahuddin01@gmail.com",
+    icon: "📬",
+    barIcon: icon3,
+    bars: 2,
+    newBars: [0],
+    counts: ["OPEN", "JMB"],
+    links: ["sultanshalahuddin01@gmail.com"],
     stats: [
-      { tag: "FOL", value: "8.9K", color: "#00f2ea" },
-      { tag: "LKS", value: "52K",  color: "#ff0050" },
+      { tag: "STS", value: "OPEN", color: "#22ff66" },
+      { tag: "LOC", value: "JMB",  color: "#53edff" },
     ],
   },
 ];
 
 export default function AboutMe() {
-  const [active, setActive]   = useState(0);
-  const [mounted, setMounted] = useState(false);
+  const [active, setActive]     = useState(0);
+  const [mounted, setMounted]   = useState(false);
   const [revealed, setRevealed] = useState(false);
   const navigate = useNavigate();
 
   const isMobileViewport =
     typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
 
+  // ── FIXED: hapus re-key, cukup setActive biasa ──
   const handleBarClick = (index) => {
     if (isMobileViewport && active === index) {
       setRevealed((prev) => !prev);
       return;
     }
-
     setActive(index);
-    if (isMobileViewport) {
-      setRevealed(false);
-    }
+    if (isMobileViewport) setRevealed(false);
   };
 
   useEffect(() => {
@@ -104,9 +129,9 @@ export default function AboutMe() {
 
   useEffect(() => {
     const onKey = (e) => {
-      if (e.key === "ArrowUp") setActive(i => Math.max(0, i - 1));
-      if (e.key === "ArrowDown") setActive(i => Math.min(ITEMS.length - 1, i + 1));
-      if (e.key === "Enter") setRevealed(true);
+      if (e.key === "ArrowUp")    setActive(i => Math.max(0, i - 1));
+      if (e.key === "ArrowDown")  setActive(i => Math.min(ITEMS.length - 1, i + 1));
+      if (e.key === "Enter")      setRevealed(true);
       if (e.key === "ArrowRight") setRevealed(true);
       if (e.key === "ArrowLeft") {
         if (revealed) setRevealed(false);
@@ -121,9 +146,9 @@ export default function AboutMe() {
   return (
     <div id="menu-screen">
       <video src={bgVideo} autoPlay loop muted playsInline />
-      {revealed && <div key={`dim-${active}`} className="sc-dim" />}
+      {revealed && <div className="sc-dim" />}
       {revealed && (
-        <div key={`panel-${active}`} className={`sc-reveal-panel${mounted ? " mounted" : ""}`}>
+        <div className={`sc-reveal-panel${mounted ? " mounted" : ""}`}>
           <div className="sc-reveal-upper-bar">
             {REVEAL_CONTENT[active].upper.map((line) => (
               <div className="sc-reveal-upper-line" key={line}>{line}</div>
@@ -133,7 +158,7 @@ export default function AboutMe() {
         </div>
       )}
       {revealed && (
-        <div key={`nav-${active}`} className="sc-right-nav">
+        <div className="sc-right-nav">
           <span className="sc-nav-arrow left">◄</span>
           <span className="sc-nav-btn">LB</span>
           <span className="sc-nav-dot" />
@@ -142,14 +167,11 @@ export default function AboutMe() {
         </div>
       )}
       {revealed && (
-        <div key={`portrait-${active}`} className={`sc-main-portrait-shell${mounted ? " mounted" : ""}`}>
-          <img
-            className="sc-main-portrait"
-            src={MAIN_IMAGES[active]}
-            alt=""
-          />
+        <div className={`sc-main-portrait-shell${mounted ? " mounted" : ""}`}>
+          <img className="sc-main-portrait" src={MAIN_IMAGES[active]} alt="" />
         </div>
       )}
+
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,700;1,700&family=Montserrat:wght@300&display=swap');
 
@@ -176,52 +198,26 @@ export default function AboutMe() {
         }
 
         @keyframes sc-dim-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
+          from { opacity: 0; }
+          to   { opacity: 1; }
         }
 
         @keyframes sc-reveal-bar-in {
-          0% {
-            opacity: 0;
-            transform: translateX(-120px) rotate(-20deg) scaleX(0.72);
-          }
-          60% {
-            opacity: 0.96;
-            transform: translateX(18px) rotate(-20deg) scaleX(1.03);
-          }
-          100% {
-            opacity: 0.92;
-            transform: translateX(0) rotate(-20deg) scaleX(1);
-          }
+          0%   { opacity: 0; transform: translateX(-120px) rotate(-20deg) scaleX(0.72); }
+          60%  { opacity: 0.96; transform: translateX(18px) rotate(-20deg) scaleX(1.03); }
+          100% { opacity: 0.92; transform: translateX(0) rotate(-20deg) scaleX(1); }
         }
 
         @keyframes sc-portrait-in {
-          0% {
-            opacity: 0;
-            transform: translateX(78px) skewX(-8deg) scale(0.94);
-            filter: blur(8px);
-          }
-          55% {
-            opacity: 0.9;
-            transform: translateX(-8px) skewX(-8deg) scale(1.015);
-            filter: blur(0);
-          }
-          100% {
-            opacity: 0.96;
-            transform: translateX(0) skewX(-8deg) scale(1);
-            filter: blur(0);
-          }
+          0%   { opacity: 0; transform: translateX(78px) skewX(-8deg) scale(0.94); filter: blur(8px); }
+          55%  { opacity: 0.9; transform: translateX(-8px) skewX(-8deg) scale(1.015); filter: blur(0); }
+          100% { opacity: 0.96; transform: translateX(0) skewX(-8deg) scale(1); filter: blur(0); }
         }
 
         @keyframes sc-arrow-left {
           0%, 100% { transform: translateX(0); opacity: 1; }
           50% { transform: translateX(-5px); opacity: 0.4; }
         }
-
         @keyframes sc-arrow-right {
           0%, 100% { transform: translateX(0); opacity: 1; }
           50% { transform: translateX(5px); opacity: 0.4; }
@@ -229,12 +225,10 @@ export default function AboutMe() {
 
         .sc-main-portrait-shell {
           position: absolute;
-          top: 0;
-          right: -3vw;
+          top: 0; right: -3vw;
           z-index: 13;
           pointer-events: none;
-          width: 43vw;
-          height: 100vh;
+          width: 43vw; height: 100vh;
           overflow: hidden;
           opacity: 0;
           transform: translateX(24px) skewX(-8deg) scale(0.98);
@@ -248,19 +242,13 @@ export default function AboutMe() {
 
         .sc-reveal-panel {
           position: absolute;
-          top: 44vh;
-          left: -6vw;
-          width: 88vw;
-          height: 60vh;
+          top: 44vh; left: -6vw;
+          width: 88vw; height: 60vh;
           z-index: 12;
           pointer-events: none;
-          background:
-            linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(243,246,252,0.98) 100%);
+          background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(243,246,252,0.98) 100%);
           clip-path: polygon(0 0, 100% 0, calc(100% - 88px) 100%, 0 100%);
-          box-shadow:
-            0 0 0 2px rgba(255,255,255,0.18),
-            18px 0 0 rgba(215, 13, 44, 0.82),
-            28px 0 0 rgba(255,255,255,0.26);
+          box-shadow: 0 0 0 2px rgba(255,255,255,0.18), 18px 0 0 rgba(215,13,44,0.82), 28px 0 0 rgba(255,255,255,0.26);
           opacity: 0;
           transform: translateX(-40px) rotate(-20deg);
           transform-origin: left bottom;
@@ -274,20 +262,15 @@ export default function AboutMe() {
         .sc-reveal-panel::before {
           content: "";
           position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 8px;
+          top: 0; left: 0;
+          width: 100%; height: 8px;
           background: linear-gradient(180deg, #e03d31 0%, #eb3333 100%);
           clip-path: inherit;
         }
         .sc-reveal-upper-bar {
           position: absolute;
-          top: 10%;
-          left: 0%;
-          width: 100%;
-          height: 40%;
-          background: rgba(0, 0, 0, 0.92);
+          top: 10%; left: 0; width: 100%; height: 40%;
+          background: rgba(0,0,0,0.92);
           clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
           box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
           display: flex;
@@ -307,12 +290,9 @@ export default function AboutMe() {
         }
         .sc-reveal-lower-bar {
           position: absolute;
-          top: 58%;
-          right: 0;
-          width: 48%;
-          min-height: 20%;
-          max-height: 34%;
-          background: rgba(0, 0, 0, 0.92);
+          top: 58%; right: 0;
+          width: 48%; min-height: 20%; max-height: 34%;
+          background: rgba(0,0,0,0.92);
           clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
           box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
           display: flex;
@@ -325,7 +305,6 @@ export default function AboutMe() {
           line-height: 1.18;
           letter-spacing: 0.4px;
           text-transform: lowercase;
-          white-space: normal;
           overflow-y: auto;
           padding: 10px 18px 10px 22px;
         }
@@ -337,8 +316,7 @@ export default function AboutMe() {
         }
         .sc-right-nav {
           position: absolute;
-          top: 10vh;
-          left: 6vw;
+          top: 10vh; left: 6vw;
           display: flex;
           align-items: center;
           gap: 6px;
@@ -362,8 +340,7 @@ export default function AboutMe() {
           padding: 0 6px;
         }
         .sc-right-nav .sc-nav-dot {
-          width: 16px;
-          height: 16px;
+          width: 16px; height: 16px;
           border-radius: 999px;
           background: #111;
           margin: 0 10px;
@@ -380,87 +357,83 @@ export default function AboutMe() {
         .sc-right-nav .sc-nav-arrow.right { animation: sc-arrow-right 0.8s ease-in-out infinite; }
 
         .sc-main-portrait {
-          width: 100%;
-          height: 100%;
+          width: 100%; height: 100%;
           object-fit: cover;
           object-position: top right;
           transform: skewX(8deg) scale(1.08);
           transform-origin: top right;
         }
 
-        /* ── Each bar ── */
-        .sc-bar {
-          position: relative;
-          width: 45vw;
-          height: 64px;
-          transition: height 0.3s cubic-bezier(0.22,1,0.36,1);
-          background: #111;
-          cursor: pointer;
-          pointer-events: all;
-          clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
-          box-shadow: 0 6px 24px rgba(0,0,0,0.65);
-          z-index: 1;
-        }
-
-        /* wrapper holds both the red underlay and the bar */
+        /* ── FIXED: hapus key dari className, transisi pakai CSS transition biasa ── */
         .sc-bar-outer {
           position: relative;
           flex-shrink: 0;
           transform: translateX(-100%);
+          /* transition untuk slide-in saat mount */
           transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+          cursor: pointer;
+          pointer-events: all;
         }
-        .sc-bar-outer.active .sc-bar     { height: 90px; }
-        .sc-bar-outer.active .sc-bar-red { height: 90px; }
         .sc-bar-outer.mounted { transform: translateX(0); }
         .sc-bar-outer:nth-child(1) { transition-delay: 0ms; }
         .sc-bar-outer:nth-child(2) { transition-delay: 80ms; }
         .sc-bar-outer:nth-child(3) { transition-delay: 160ms; }
 
-        /* red underlay — peeks out below the bar when active */
+        .sc-bar {
+          position: relative;
+          width: 45vw;
+          height: 64px;
+          /* FIXED: tambah transition height agar smooth saat active berubah */
+          transition: height 0.25s cubic-bezier(0.22,1,0.36,1),
+                      background 0.25s ease;
+          background: #111;
+          clip-path: polygon(0 0, 100% 0, calc(100% - 14px) 100%, 0 100%);
+          box-shadow: 0 6px 24px rgba(0,0,0,0.65);
+          z-index: 1;
+        }
+        .sc-bar-outer.active .sc-bar { height: 90px; }
+
         .sc-bar-red {
           position: absolute;
           top: 0; left: 0;
-          width: 45vw;
-          height: 64px;
+          width: 45vw; height: 64px;
           background: #c4001a;
           clip-path: polygon(50% 0, 100% 0, 100% 100%, calc(50% - 10px) 100%);
           transform: translateY(-7px);
+          /* FIXED: transition agar mulus */
           opacity: 0;
-          transition: opacity 0.2s ease;
+          transition: opacity 0.25s ease, height 0.25s cubic-bezier(0.22,1,0.36,1);
           z-index: 0;
           pointer-events: none;
         }
-        .sc-bar-outer.active .sc-bar-red { opacity: 1; }
+        .sc-bar-outer.active .sc-bar-red { opacity: 1; height: 90px; }
 
-        /* white fill — skewed parallelogram on the right 25% */
         .sc-bar-fill {
           position: absolute;
           inset: 0;
           width: 100%;
           background: #ffffff;
           clip-path: polygon(100% 0, 100% 0, calc(100% - 32px) 100%, calc(100% - 32px) 100%);
-          transition: clip-path 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+          /* FIXED: transition clip-path untuk white fill sweep */
+          transition: clip-path 0.3s cubic-bezier(0.22, 1, 0.36, 1);
           z-index: 0;
         }
         .sc-bar-outer.active .sc-bar-fill {
           clip-path: polygon(22% 0, 100% 0, calc(100% - 14px) 100%, calc(22% + 138px) 100%);
         }
 
-        /* shade on the left edge of the white fill */
         .sc-bar-shade {
           position: absolute;
-          top: 0; bottom: 0;
-          left: 73%;
+          top: 0; bottom: 0; left: 73%;
           width: 6%;
           background: linear-gradient(90deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 100%);
           z-index: 1;
           pointer-events: none;
           opacity: 0;
-          transition: opacity 0.35s ease;
+          transition: opacity 0.3s ease;
         }
         .sc-bar-outer.active .sc-bar-shade { opacity: 1; }
 
-        /* bottom shadow line under each bar */
         .sc-bar::after {
           content: '';
           position: absolute;
@@ -471,7 +444,6 @@ export default function AboutMe() {
           pointer-events: none;
         }
 
-        /* content layout inside each bar */
         .sc-bar-content {
           position: relative;
           z-index: 2;
@@ -479,10 +451,9 @@ export default function AboutMe() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 0 20px 0 20px;
+          padding: 0 20px;
         }
 
-        /* left: role label */
         .sc-role {
           display: flex;
           align-items: center;
@@ -497,7 +468,6 @@ export default function AboutMe() {
           padding: 0 16px 0 8px;
         }
 
-        /* left: icon + name centered in remaining space */
         .sc-main {
           flex: 1;
           display: flex;
@@ -513,97 +483,22 @@ export default function AboutMe() {
           gap: 12px;
         }
 
-        .sc-icon {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 22px;
-          width: 32px;
-          text-align: center;
-          flex-shrink: 0;
-          color: rgba(255,255,255,0.15);
-          transition: color 0.2s ease;
-          user-select: none;
-        }
-        .sc-bar-outer.active .sc-icon { color: rgba(255,255,255,0.25); }
-
         .sc-label {
           font-family: 'Bebas Neue', sans-serif;
           font-size: 28px;
           letter-spacing: 4px;
           line-height: 1;
           color: rgba(255,255,255,0.85);
-          transition: color 0.2s ease;
+          /* FIXED: transition warna label */
+          transition: color 0.25s ease;
           user-select: none;
         }
         .sc-bar-outer.active .sc-label { color: #111111; }
 
-        /* right: stats group */
-        .sc-stats {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          padding-right: 24px;
-          flex-shrink: 0;
-        }
-
-        .sc-stat {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .sc-stat-top {
-          display: flex;
-          align-items: baseline;
-          gap: 4px;
-        }
-
-        .sc-stat-tag {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 9px;
-          letter-spacing: 1.5px;
-          padding: 1px 4px;
-          border-width: 1px;
-          border-style: solid;
-          line-height: 1.4;
-          user-select: none;
-        }
-
-        .sc-stat-num {
-          font-family: 'Bebas Neue', sans-serif;
-          font-size: 26px;
-          font-style: italic;
-          line-height: 1;
-          color: #ffffff;
-          letter-spacing: 1px;
-          user-select: none;
-          transition: color 0.2s ease;
-        }
-        .sc-bar-outer.active .sc-stat-num { color: #111111; }
-
-        .sc-stat-bars {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          gap: 1px;
-          margin-top: 2px;
-        }
-        .sc-stat-bar-color {
-          height: 3px;
-          width: 100%;
-        }
-        .sc-stat-bar-black {
-          height: 2px;
-          width: 100%;
-          background: #000;
-        }
-
-        /* character portrait */
         .sc-char {
           position: absolute;
-          top: 0;
-          left: 110px;
-          height: 100%;
-          width: auto;
+          top: 0; left: 110px;
+          height: 100%; width: auto;
           max-width: 160px;
           object-fit: cover;
           object-position: top;
@@ -612,7 +507,6 @@ export default function AboutMe() {
           clip-path: polygon(20px 0%, 100% 0%, calc(100% - 20px) 100%, 0% 100%);
         }
 
-        /* footer hints */
         .sc-footer {
           position: fixed;
           bottom: 20px; right: 28px;
@@ -635,13 +529,10 @@ export default function AboutMe() {
           padding: 1px 6px; font-size: 11px;
         }
 
-        .sc-mobile-controls {
-          display: none;
-        }
-
+        .sc-mobile-controls { display: none; }
         .sc-mobile-btn {
-          border: 1px solid rgba(255, 255, 255, 0.28);
-          background: rgba(0, 0, 0, 0.6);
+          border: 1px solid rgba(255,255,255,0.28);
+          background: rgba(0,0,0,0.6);
           color: #fff;
           font-family: 'Bebas Neue', sans-serif;
           letter-spacing: 1.2px;
@@ -653,84 +544,33 @@ export default function AboutMe() {
 
         @media (max-width: 768px) {
           .sc-main-portrait-shell {
-            top: 8vh;
-            right: -9vw;
-            width: 46vw;
-            height: 44vh;
+            top: 8vh; right: -9vw;
+            width: 46vw; height: 44vh;
             z-index: 13;
           }
-
           .sc-main-portrait {
             transform: none;
             object-position: center top;
           }
-
           .sc-reveal-panel {
-            top: 44vh !important;
-            left: 4vw !important;
-            right: 6vw !important;
-            width: auto !important;
-            height: 50vh !important;
+            top: 44vh !important; left: 4vw !important; right: 6vw !important;
+            width: auto !important; height: 50vh !important;
             z-index: 14;
             transform: translateX(0) rotate(0deg) !important;
             clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
-            box-shadow:
-              0 0 0 2px rgba(255,255,255,0.24),
-              10px 0 0 rgba(215, 13, 44, 0.9),
-              16px 0 0 rgba(255,255,255,0.24);
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.24), 10px 0 0 rgba(215,13,44,0.9), 16px 0 0 rgba(255,255,255,0.24);
           }
-
-          .sc-reveal-panel.mounted {
-            transform: translateX(0) rotate(0deg) !important;
-          }
-
-          .sc-reveal-panel::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 18px;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(224,61,49,0.95) 0%, rgba(168,22,43,0.92) 100%);
-            clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
-            opacity: 0.95;
-            pointer-events: none;
-          }
-
-          .sc-reveal-upper-bar {
-            top: 10%;
-            height: 46%;
-            width: 96%;
-            left: 2%;
-          }
-
-          .sc-reveal-upper-line {
-            font-size: 14px;
-            line-height: 1.1;
-            padding: 0 10px;
-          }
-
+          .sc-reveal-panel.mounted { transform: translateX(0) rotate(0deg) !important; }
+          .sc-reveal-upper-bar { top: 10%; height: 46%; width: 96%; left: 2%; }
+          .sc-reveal-upper-line { font-size: 14px; line-height: 1.1; padding: 0 10px; }
           .sc-reveal-lower-bar {
-            top: 62%;
-            width: 88%;
-            bottom: 8%;
-            height: auto;
-            max-height: none;
-            font-size: 15px;
-            line-height: 1.2;
-            padding: 8px 12px 8px 12px;
+            top: 62%; width: 88%; bottom: 8%; height: auto; max-height: none;
+            font-size: 15px; line-height: 1.2; padding: 8px 12px;
           }
-
-          .sc-right-nav {
-            top: 2vh;
-            left: 4vw;
-            transform: translateX(0) rotate(-12deg);
-          }
-
+          .sc-right-nav { top: 2vh; left: 4vw; transform: translateX(0) rotate(-12deg); }
           .sc-mobile-controls {
             position: fixed;
-            left: 8px;
-            right: 8px;
+            left: 8px; right: 8px;
             bottom: max(8px, env(safe-area-inset-bottom));
             z-index: 18;
             display: flex;
@@ -739,62 +579,44 @@ export default function AboutMe() {
             gap: 8px;
             pointer-events: all;
           }
-
-          .sc-footer {
-            display: none;
-          }
+          .sc-footer { display: none; }
         }
 
         @media (min-width: 769px) and (max-width: 1200px) {
-          .sc-main-portrait-shell {
-            right: -6vw;
-            width: 44vw;
-            height: 92vh;
-          }
-
+          .sc-main-portrait-shell { right: -6vw; width: 44vw; height: 92vh; }
           .sc-reveal-panel {
-            top: 46vh;
-            left: -2vw;
-            width: 78vw;
-            height: 52vh;
+            top: 46vh; left: -2vw; width: 78vw; height: 52vh;
             transform: translateX(0) rotate(-14deg);
           }
-
-          .sc-reveal-panel.mounted {
-            transform: translateX(0) rotate(-14deg);
-          }
+          .sc-reveal-panel.mounted { transform: translateX(0) rotate(-14deg); }
         }
       `}</style>
 
-    <div className="sc-root" role="navigation">
-      {ITEMS.map((item, i) => (
-        <div
-          key={`${item.id}-${active === i}-${mounted}`} 
-          className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
-          onClick={() => {
-            handleBarClick(i);
-          }}
-          onMouseEnter={() => {
-            if (active !== i) setActive(i);
-          }}
-        >
-          <div className="sc-bar-red" />
-          <div className="sc-bar">
-            <img className="sc-char" src={CHARS[i]} alt="" />
-            <div className="sc-bar-fill" />
-            <div className="sc-bar-shade" />
-            <div className="sc-bar-content">
-              <div className="sc-role">{ROLES[i].text}</div>
-              <div className="sc-main">
-                <div className="sc-main-top">
-                  <div className="sc-label">{item.label}</div>
+      <div className="sc-root" role="navigation">
+        {ITEMS.map((item, i) => (
+          <div
+            key={item.id}
+            className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
+            onClick={() => handleBarClick(i)}
+            onMouseEnter={() => { if (active !== i) setActive(i); }}
+          >
+            <div className="sc-bar-red" />
+            <div className="sc-bar">
+              <img className="sc-char" src={CHARS[i]} alt="" />
+              <div className="sc-bar-fill" />
+              <div className="sc-bar-shade" />
+              <div className="sc-bar-content">
+                <div className="sc-role">{ROLES[i].text}</div>
+                <div className="sc-main">
+                  <div className="sc-main-top">
+                    <div className="sc-label">{item.label}</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
 
       <div className={`sc-footer${mounted ? " mounted" : ""}`}>
         <div className="sc-footer-row"><span className="sc-footer-key">↑↓</span><span>SELECT</span></div>
@@ -803,9 +625,7 @@ export default function AboutMe() {
       </div>
 
       <div className="sc-mobile-controls" aria-label="About mobile controls">
-        <button className="sc-mobile-btn" type="button" onClick={() => navigate(-1)}>
-          BACK
-        </button>
+        <button className="sc-mobile-btn" type="button" onClick={() => navigate(-1)}>BACK</button>
         <button className="sc-mobile-btn" type="button" onClick={() => setRevealed((prev) => !prev)}>
           {revealed ? "HIDE" : "REVEAL"}
         </button>

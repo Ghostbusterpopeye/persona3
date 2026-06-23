@@ -766,35 +766,35 @@ export default function AboutMe() {
         }
       `}</style>
 
-      <div className="sc-root" role="navigation">
-        {ITEMS.map((item, i) => (
-          <div
-            key={item.id}
-            className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
-            onClick={() => {
-              handleBarClick(i);
-            }}
-            onMouseEnter={() => {
-              setActive(i);
-            }}
-          >
-            <div className="sc-bar-red" />
-            <div className="sc-bar">
-              <img className="sc-char" src={CHARS[i]} alt="" />
-              <div className="sc-bar-fill" />
-              <div className="sc-bar-shade" />
-              <div className="sc-bar-content">
-                <div className="sc-role">{ROLES[i].text}</div>
-                <div className="sc-main">
-                  <div className="sc-main-top">
-                    <div className="sc-label">{item.label}</div>
-                  </div>
+    <div className="sc-root" role="navigation">
+      {ITEMS.map((item, i) => (
+        <div
+          key={`${item.id}-${active === i}-${mounted}`} 
+          className={`sc-bar-outer${active === i ? " active" : ""}${mounted ? " mounted" : ""}`}
+          onClick={() => {
+            handleBarClick(i);
+          }}
+          onMouseEnter={() => {
+            if (active !== i) setActive(i);
+          }}
+        >
+          <div className="sc-bar-red" />
+          <div className="sc-bar">
+            <img className="sc-char" src={CHARS[i]} alt="" />
+            <div className="sc-bar-fill" />
+            <div className="sc-bar-shade" />
+            <div className="sc-bar-content">
+              <div className="sc-role">{ROLES[i].text}</div>
+              <div className="sc-main">
+                <div className="sc-main-top">
+                  <div className="sc-label">{item.label}</div>
                 </div>
               </div>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
+    </div>
 
       <div className={`sc-footer${mounted ? " mounted" : ""}`}>
         <div className="sc-footer-row"><span className="sc-footer-key">↑↓</span><span>SELECT</span></div>

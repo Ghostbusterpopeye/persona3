@@ -16,24 +16,30 @@ const MAIN_IMAGES = [mainm, mainm2, mainf];
 
 const REVEAL_CONTENT = [
   {
-    upper: ["name moneybagg", "age:23"],
-    lower: "major: computer science",
+    upper: [
+      "NAME: SULTAN SHALAHUDDIN AL AYUBI",
+      "ROLE: FULL-STACK DEVELOPER & DESIGNER",
+      "FOCUS: WEB DEVELOPMENT & INTERACTIVE UI"
+    ],
+    lower: "informatics engineering student focused on building modern web applications. experienced in full-stack engineering, managing asset pipelines, and creating clean corporate profiles.",
   },
   {
     upper: [
-      "Cleopatra lived closer to the Moon landing than to the building of the pyramids.",
-      "Vikings kept cats on ships for pest control (and vibes).",
-      "In medieval Europe, animals could be put on trial for crimes",
+      "SKILLSET & TECH STACKS:",
+      "• BACKEND: PHP (MVC/NATIVE), MYSQL DATABASE",
+      "• FRONTEND: JAVASCRIPT, CSS, TAILWIND CSS",
+      "• TOOLS: FIGMA, BLENDER, AFTER EFFECTS, GITHUB"
     ],
-    lower: "abbove is some history fun fact",
+    lower: "passionate about crafting robust systems and high-fidelity interfaces. capable of transforming design wireframes into production-ready web applications.",
   },
   {
     upper: [
-      "Oxford University founding is older than the Aztec Empire.",
-      "The shortest war in history lasted 38–45 minutes (Britain vs Zanzibar).",
-      "Humans have been writing for ~5,000 years",
+      "VISION & GOALS:",
+      "• BUILD SCALABLE DIGITAL SOLUTIONS",
+      "• INNOVATE IN THE IT INDUSTRY",
+      "• FUTURE TECH ENTREPRENEUR"
     ],
-    lower: "yes it's a place holder",
+    lower: "driven by a long-term goal to build a business in the technology sector. dedicated to continuously refining engineering skills and contributing to impactful digital projects.",
   },
 ];
 

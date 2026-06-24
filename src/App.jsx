@@ -1,40 +1,24 @@
-import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom'
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
+import menuVideo from './assets/Mainn.mp4'
+import main1 from './assets/main1.mp4'
+import main2 from './assets/main2.mp4'
+import main3 from './assets/main3.mp4'
 import P3Menu from './P3Menu'
+import VideoPage from './VideoPage'
 import ResumePage from './ResumePage'
 import PageTransition from './PageTransition'
 import Socials from './Socials'
 import AboutMe from './AboutMe'
 import './App.css'
 
-const menuVideo = '/Mainn.mp4'
-const main2     = '/main2.mp4'
-
-// Redirect component — langsung buka URL eksternal lalu kembali ke /
-function ExternalRedirect({ to }) {
-  useEffect(() => {
-    window.open(to, "_blank", "noopener,noreferrer");
-  }, []);
-  return <Navigate to="/" replace />;
-}
-
-// import useEffect
-import { useEffect } from 'react';
 
 function MenuScreen() {
   const navigate = useNavigate()
   return (
     <div id="menu-screen">
       <video src={menuVideo} autoPlay loop muted playsInline />
-      <P3Menu onNavigate={(page) => {
-        if (page === "github") {
-          window.open("https://github.com/Ghostbusterpopeye", "_blank", "noopener,noreferrer");
-        } else if (page === "sideproj" || page === "contact") {
-          window.open("mailto:sultanshalahuddin01@gmail.com", "_blank");
-        } else {
-          navigate(`/${page}`);
-        }
-      }} />
+      <P3Menu onNavigate={(page) => navigate(`/${page}`)} />
     </div>
   )
 }
@@ -56,8 +40,6 @@ function AnimatedRoutes() {
         <Route path="/socials" element={
           <PageTransition variant="socials"><Socials /></PageTransition>
         } />
-        {/* Catch-all: redirect route yang tidak dikenal ke home */}
-        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AnimatePresence>
   )

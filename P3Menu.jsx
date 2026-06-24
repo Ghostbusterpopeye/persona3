@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
 const ITEMS = [
-  { id: "about",  label: "ABOUT ME",    href: "#about",  fontSize: 130, offsetX: 0,  offsetY: 0  },
-  { id: "resume", label: "RESUME",      href: "#resume", fontSize: 108, offsetX: 38, offsetY: -8 },
-  { id: "github", label: "GITHUB LINK", href: "https://github.com/Ghostbusterpopeye", fontSize: 88, offsetX: 14, offsetY: -6 },
+  { id: "about",   label: "ABOUT ME",    type: "navigate", page: "about",   fontSize: 130, offsetX: 0,  offsetY: 0  },
+  { id: "resume",  label: "RESUME",      type: "navigate", page: "resume",  fontSize: 108, offsetX: 38, offsetY: -8 },
+  { id: "github",  label: "GITHUB LINK", type: "external", href: "https://github.com/Ghostbusterpopeye", fontSize: 88, offsetX: 14, offsetY: -6 },
 ];
 
 const CLIP_SHAPES = [
@@ -12,7 +12,7 @@ const CLIP_SHAPES = [
   (w, h) => `polygon(0px ${h*0.1}px, ${w - h*0.4}px 0px, ${w}px ${h*0.45}px, ${w - h*0.25}px ${h}px, ${h*0.05}px ${h*0.9}px)`,
 ];
 
-export default function P3Menu() {
+export default function P3Menu({ onNavigate }) {
   const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
 
@@ -21,16 +21,19 @@ export default function P3Menu() {
     return () => clearTimeout(t);
   }, []);
 
+  const handleSelect = (item) => {
+    if (item.type === "external") {
+      window.open(item.href, "_blank", "noopener,noreferrer");
+    } else {
+      onNavigate?.(item.page);
+    }
+  };
+
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "ArrowUp")   setActive(i => Math.max(0, i - 1));
       if (e.key === "ArrowDown") setActive(i => Math.min(ITEMS.length - 1, i + 1));
-      if (e.key === "Enter") {
-        const item = ITEMS[active];
-        if (item.page === "github") window.open("https://github.com/Ghostbusterpopeye", "_blank");
-        else if (item.page === "sideproj") window.open("mailto:sultanshalahuddin01@gmail.com", "_blank");
-        else onNavigate?.(item.page);
-      }
+      if (e.key === "Enter")     handleSelect(ITEMS[active]);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -195,19 +198,19 @@ export default function P3Menu() {
             return (
               <a
                 key={item.id}
-                href={item.href}
+                href={item.type === "external" ? item.href : "#"}
+                target={item.type === "external" ? "_blank" : undefined}
+                rel={item.type === "external" ? "noopener noreferrer" : undefined}
                 className={`p3-row ${isActive ? "active" : ""} ${mounted ? "mounted" : ""}`}
                 style={{
                   marginLeft: item.offsetX,
                   marginTop: item.offsetY,
                   transitionDelay: mounted ? `${i * 80}ms` : "0ms",
                 }}
-
                 onClick={(e) => {
                   e.preventDefault();
-                  if (item.page === "github") window.open("https://github.com/Ghostbusterpopeye", "_blank");
-                  else if (item.page === "sideproj") window.open("mailto:sultanshalahuddin01@gmail.com", "_blank");
-                  else onNavigate?.(item.page);
+                  setActive(i);
+                  handleSelect(item);
                 }}
                 onMouseEnter={() => setActive(i)}
                 aria-current={isActive ? "page" : undefined}

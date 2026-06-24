@@ -35,7 +35,7 @@ export default function P3Menu({ onNavigate }) {
     const onKey = (e) => {
       if (e.key === "ArrowUp")   activate(Math.max(0, active - 1));
       if (e.key === "ArrowDown") activate(Math.min(ITEMS.length - 1, active + 1));
-      if (e.key === "Enter")     onNavigate?.(ITEMS[active].page);
+      if (e.key === "Enter") { if (ITEMS[active].page === "github") { window.open("https://github.com/Ghostbusterpopeye", "_blank", "noopener,noreferrer"); } else { onNavigate?.(ITEMS[active].page); } }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -241,7 +241,7 @@ export default function P3Menu({ onNavigate }) {
                   marginTop: item.offsetY,
                   transitionDelay: mounted ? `${i * 80}ms` : "0ms",
                 }}
-                onClick={(e) => { e.preventDefault(); onNavigate?.(item.page); }}
+                onClick={(e) => { e.preventDefault(); if (item.page === "github") { window.open("https://github.com/Ghostbusterpopeye", "_blank", "noopener,noreferrer"); } else { onNavigate?.(item.page); } }}
                 onMouseEnter={() => activate(i)}
                 aria-current={isActive ? "page" : undefined}
               >
